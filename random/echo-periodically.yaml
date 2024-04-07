@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu
+spec:
+  initContainers:
+  - image: ubuntu
+    name: ubuntu-init
+    args: ["/bin/sh", "-c", 'now=$(date +"%T") && echo time=${now}']
+  containers:
+  - image: ubuntu
+    name: ubuntu
+    args: ["/bin/sh", "-c", 'while true; do now=$(date +"%T"); echo time=${now}; sleep 5; done']

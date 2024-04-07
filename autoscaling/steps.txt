@@ -1,0 +1,21 @@
+
+
+LoadVPAs
+- list autoscalers using ic
+- convert autosclaer's status.vpas into autopilot object
+- load them into clusterstate
+
+LoadPods
+- list pods 
+- update podMemory according to memoryUsedPercentage (0 for non-inmemory ?)
+- load them into clusterstate
+
+LoadRealTimeMetrics
+- list podmetrics
+- 
+
+UpdateVPAs
+
+MaintainCheckpoints
+
+GarbageCollect

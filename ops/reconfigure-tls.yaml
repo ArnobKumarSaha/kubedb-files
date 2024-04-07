@@ -1,0 +1,85 @@
+# openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./ca.key -out ./ca.crt -subj "/CN=ca/O=kubedb"
+
+# kubectl create secret tls mongo-ca --cert=ca.crt  --key=ca.key --namespace=demo
+
+# apiVersion: cert-manager.io/v1
+# kind: Issuer
+# metadata:
+#   name: mg-issuer
+#   namespace: demo
+# spec:
+#   ca:
+#     secretName: mongo-ca
+# ---
+
+# apiVersion: ops.kubedb.com/v1alpha1
+# kind: MongoDBOpsRequest
+# metadata:
+#   name: tls
+#   namespace: demo
+# spec:
+#   type: ReconfigureTLS
+#   databaseRef:
+#     name: mg
+#   tls:
+#     issuerRef:
+#       name: mg-issuer
+#       kind: Issuer
+#       apiGroup: "cert-manager.io"
+#     certificates:
+#       - alias: client
+#         subject:
+#           organizations:
+#             - mongo
+#           organizationalUnits:
+#             - client
+#   readinessCriteria:
+#     oplogMaxLagSeconds: 20
+#     objectsCountDiffPercentage: 10
+#   timeout: 5m
+#   apply: IfReady
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T04:36:36Z"
+#     message: MongoDB ops request is reconfiguring TLS
+#     observedGeneration: 1
+#     reason: ReconfigureTLS
+#     status: "True"
+#     type: ReconfigureTLS
+#   - lastTransitionTime: "2023-08-02T04:36:53Z"
+#     message: Successfully Updated StatefulSets
+#     observedGeneration: 1
+#     reason: AddTLS
+#     status: "True"
+#     type: AddTLS
+#   - lastTransitionTime: "2023-08-02T04:38:39Z"
+#     message: Successfully Restarted ReplicaSet nodes
+#     observedGeneration: 1
+#     reason: RestartReplicaSet
+#     status: "True"
+#     type: RestartReplicaSet
+#   - lastTransitionTime: "2023-08-02T04:38:41Z"
+#     message: Successfully Reconfigured TLS
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful
+
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: add
+  namespace: demo
+spec:
+  type: ReconfigureTLS
+  databaseRef:
+    name: sh7
+  tls:
+    issuerRef:
+      name: mongo-ca-issuer
+      kind: Issuer
+      apiGroup: "cert-manager.io"
+  timeout: 5m
+  apply: IfReady

@@ -1,0 +1,48 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: volume-exp
+  namespace: demo
+spec:
+  type: VolumeExpansion  
+  databaseRef:
+    name: s4
+  volumeExpansion:
+    mode: Offline
+    standalone: 20Gi
+    # replicaSet: 3Gi
+    # hidden: 2Gi
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T05:35:59Z"
+#     message: MongoDB ops request is expanding volume of database
+#     observedGeneration: 1
+#     reason: VolumeExpansion
+#     status: "True"
+#     type: VolumeExpansion
+#   - lastTransitionTime: "2023-08-02T05:37:24Z"
+#     message: Successfully Expanded Volume
+#     observedGeneration: 1
+#     reason: VolumeExpansionReplicaSet
+#     status: "True"
+#     type: VolumeExpansionReplicaSet
+#   - lastTransitionTime: "2023-08-02T05:37:34Z"
+#     message: Successfully Expanded Volume
+#     observedGeneration: 1
+#     reason: VolumeExpansionHidden
+#     status: "True"
+#     type: VolumeExpansionHidden
+#   - lastTransitionTime: "2023-08-02T05:37:55Z"
+#     message: StatefulSet is recreated
+#     observedGeneration: 1
+#     reason: UpdateStatefulSets
+#     status: "True"
+#     type: UpdateStatefulSets
+#   - lastTransitionTime: "2023-08-02T05:37:55Z"
+#     message: Successfully Expanded Volume
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful

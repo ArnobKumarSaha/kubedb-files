@@ -1,0 +1,48 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: simple
+  namespace: demo
+spec:
+  version: "4.4.6"
+  terminationPolicy: WipeOut
+  podTemplate:
+    metadata:
+      labels:
+        app: kubedb
+        instance: mongodb
+        component: mg-database
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - kubedb
+              - key: instance
+                operator: In
+                values:
+                - mongodb
+              - key: component
+                operator: In
+                values:
+                - mg-database
+            topologyKey: kubernetes.io/hostname
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: standard-rwo
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  monitor:
+    agent: prometheus.io/builtin
+    prometheus:
+      exporter:
+        args: ["--compatible-mode"]

@@ -1,0 +1,110 @@
+apiVersion: node.k8s.appscode.com/v1alpha1
+kind: NodeTopology
+metadata:
+  name: gke-pools
+spec:
+  nodeSelectionPolicy: Taint
+  topologyKey: "nodepool"
+  nodeGroups:
+  # - topologyValue: small
+  #   allocatable:
+  #     cpu: 940m
+  #     memory: 1.4Gi
+  # - topologyValue: medium
+  #   allocatable:
+  #     cpu: 940m
+  #     memory: 2.8Gi
+  - topologyValue: std2
+    allocatable:
+      cpu: 1930m
+      memory: 5.89Gi
+  - topologyValue: std4
+    allocatable:
+      cpu: 3920m
+      memory: 12.97Gi
+  - topologyValue: std8
+    allocatable:
+      cpu: 7910m
+      memory: 27.74Gi
+  - topologyValue: std16
+    allocatable:
+      cpu: 15890m
+      memory: 57.27Gi
+
+
+---
+# small
+#     allocatable:
+#       cpu: 940m
+#       ephemeral-storage: "47060071478"
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 1401264Ki
+#       pods: "110"
+#     capacity:
+#       cpu: "2"
+#       ephemeral-storage: 98831908Ki
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 2027952Ki
+#       pods: "110"
+# medium
+#     allocatable:
+#       cpu: 940m
+#       ephemeral-storage: "47060071478"
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 2877096Ki
+#       pods: "110"
+#     capacity:
+#       cpu: "2"
+#       ephemeral-storage: 98831908Ki
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 4022952Ki
+#       pods: "110"
+# std2
+#     allocatable:
+#       cpu: 1930m
+#       ephemeral-storage: "47060071478"
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 6180516Ki
+#       pods: "110"
+#     capacity:
+#       cpu: "2"
+#       ephemeral-storage: 98831908Ki
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 8145572Ki
+#       pods: "110"
+# std4
+#     allocatable:
+#       cpu: 3920m
+#       ephemeral-storage: "47060071478"
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 13601996Ki
+#       pods: "110"
+#     capacity:
+#       cpu: "4"
+#       ephemeral-storage: 98831908Ki
+#       hugepages-1Gi: "0"
+#       hugepages-2Mi: "0"
+#       memory: 16390348Ki
+#       pods: "110"
+# std8
+    allocatable:
+      cpu: 7910m
+      ephemeral-storage: "47060071478"
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 29084928Ki
+      pods: "110"
+    capacity:
+      cpu: "8"
+      ephemeral-storage: 98831908Ki
+      hugepages-1Gi: "0"
+      hugepages-2Mi: "0"
+      memory: 32879872Ki
+      pods: "110"

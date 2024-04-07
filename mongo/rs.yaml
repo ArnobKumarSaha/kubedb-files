@@ -1,0 +1,133 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: mg5
+  namespace: demo
+spec:
+  # allowedSchemas:
+  #   namespaces:
+  #     from: Selector
+  #     selector:
+  #       matchExpressions:
+  #       - {key: kubernetes.io/metadata.name, operator: In, values: [dev]}
+  #   selector:
+  #     matchLabels:
+  #       "schema.kubedb.com": "mongo"
+  # version: "4.0.11-v1"
+  version: "5.0.23"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  # authSecret:
+  #   name: source-auth
+  #   externallyManaged: true
+  podTemplate:
+    spec:
+      # nodeSelector:
+      #   cloud.google.com/gke-nodepool: medium
+      # tolerations:
+      # - key: nodepool
+      #   value: std4
+      #   effect: NoSchedule
+      resources:
+        requests:
+          "cpu": "700m"
+          "memory": 700Mi
+  # coordinator:
+    # securityContext:
+  #     allowPrivilegeEscalation: false
+  #     capabilities:
+  #       drop:
+  #       - ALL
+  #     runAsNonRoot: true
+      # seccompProfile:
+      #   type: RuntimeDefault
+  storage:
+    # storageClassName: longhorn
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+  # serviceTemplates:
+  # - alias: primary
+  #   metadata: {}
+  #   spec:
+  #     ports:
+  #     - name: db
+  #       nodePort: 30304
+  #       port: 27017
+  #     type: LoadBalancer
+  # hidden:
+  #   podTemplate:
+  #     spec:
+  #       resources:
+  #         requests:
+  #           cpu: "400m"
+  #           memory: "400Mi"
+  #   replicas: 2
+  #   storage:
+  #     # storageClassName: "longhorn"
+  #     accessModes:
+  #       - ReadWriteOnce
+  #     resources:
+  #       requests:
+  #         storage: 2Gi
+  # arbiter: 
+  #   podTemplate: {}
+  #     spec:
+  #       # nodeSelector:
+  #       #   cloud.google.com/gke-nodepool: medium
+  #       tolerations:
+  #       - key: nodepool
+  #         value: medium
+  #         effect: NoSchedule
+  #       resources:
+  #         requests:
+  #           "cpu": 0.4
+  #           "memory": 400Mi
+  # configSecret:
+  #   name: mg-configuration
+  # sslMode: requireSSL
+  # tls:
+  #   issuerRef:
+  #     apiGroup: "cert-manager.io"
+  #     kind: Issuer
+  #     name: mongo-ca-issuer
+  # clusterAuthMode: x509
+  monitor:
+    # agent: prometheus.io/builtin
+    agent: prometheus.io/operator
+    prometheus:
+      serviceMonitor:
+        labels:
+          release: prometheus
+  #     exporter:
+  #       args: ["--compatible-mode"]
+  #       securityContext:
+  #   #       allowPrivilegeEscalation: false
+  #   #       capabilities:
+  #   #         drop:
+  #   #         - ALL
+  #   #       runAsNonRoot: true
+  #   #       runAsUser: 999
+  #         seccompProfile:
+  #           type: RuntimeDefault
+
+
+# sudo apt-get install -y 
+# mongodb-org=<version> 
+# mongodb-org-database=<version> 
+# mongodb-org-server=<version> 
+# mongodb-org-shell=<version> 
+# mongodb-org-mongos=<version> 
+# mongodb-org-tools=<version>
+
+
+
+# https://bind.appscode.com/callback?
+# code=pDtxgb6RkfYZ69gzJQRg-SBhVZDeZgf3Ctmibg-3omk%3D&
+# state=eyJyZWRpcmVjdFVSTCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDA4NDUvY2FsbGJhY2siLCJzaWQiOiI0Y2dwY3kiLCJjaWQiOiJPWG15U2wifQ%3D%3D
+
+# Collection has found to be unsharded after refresh

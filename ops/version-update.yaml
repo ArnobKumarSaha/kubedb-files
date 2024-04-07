@@ -1,0 +1,45 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: three # mongo -u root -p $MONGO_INITDB_ROOT_PASSWORD
+  namespace: demo # rs.status()
+spec:
+  type: UpdateVersion
+  databaseRef:
+    name: three
+  updateVersion:
+    targetVersion: 4.0.11-v1
+    # targetVersion: 4.4.6
+  # readinessCriteria:
+  #   oplogMaxLagSeconds: 20
+  #   objectsCountDiffPercentage: 10
+  # timeout: 10m
+  apply: IfReady
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T04:34:02Z"
+#     message: MongoDB ops request is updating database version
+#     observedGeneration: 1
+#     reason: UpdateVersion
+#     status: "True"
+#     type: UpdateVersion
+#   - lastTransitionTime: "2023-08-02T04:34:04Z"
+#     message: Successfully updated statefulsets update strategy type
+#     observedGeneration: 1
+#     reason: UpdateStatefulSets
+#     status: "True"
+#     type: UpdateStatefulSets
+#   - lastTransitionTime: "2023-08-02T04:36:17Z"
+#     message: Successfully Updated Standalone Image
+#     observedGeneration: 1
+#     reason: UpdateReplicaSetImage
+#     status: "True"
+#     type: UpdateReplicaSetImage
+#   - lastTransitionTime: "2023-08-02T04:36:19Z"
+#     message: Successfully completed the modification process.
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful

@@ -1,0 +1,52 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  creationTimestamp: "2023-07-15T07:54:48Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: mg-tls-sharded
+    app.kubernetes.io/managed-by: kubedb.com
+    app.kubernetes.io/name: mongodbs.kubedb.com
+  name: mg-tls-sharded
+  namespace: demo
+  ownerReferences:
+  - apiVersion: kubedb.com/v1alpha2
+    blockOwnerDeletion: true
+    controller: true
+    kind: MongoDB
+    name: mg-tls-sharded
+    uid: 7a7ab448-430a-4a9b-8332-a15c02de5e94
+  resourceVersion: "22762"
+  uid: 364733e2-a35d-4738-9220-62c249fa65b1
+spec:
+  appRef:
+    apiGroup: kubedb.com
+    kind: MongoDB
+    name: mg-tls-sharded
+    namespace: demo
+  clientConfig:
+    caBundle: <>
+    service:
+      name: mg-tls-sharded
+      port: 27017
+      scheme: mongodb
+  parameters:
+    apiVersion: config.kubedb.com/v1alpha1
+    configServer: cnfRepSet/mg-tls-sharded-configsvr-0.mg-tls-sharded-configsvr-pods.demo.svc:27017,mg-tls-sharded-configsvr-1.mg-tls-sharded-configsvr-pods.demo.svc:27017,mg-tls-sharded-configsvr-2.mg-tls-sharded-configsvr-pods.demo.svc:27017
+    kind: MongoConfiguration
+    replicaSets:
+      host-0: shard0/mg-tls-sharded-shard0-0.mg-tls-sharded-shard0-pods.demo.svc:27017,mg-tls-sharded-shard0-1.mg-tls-sharded-shard0-pods.demo.svc:27017,mg-tls-sharded-shard0-2.mg-tls-sharded-shard0-pods.demo.svc:27017
+      host-1: shard1/mg-tls-sharded-shard1-0.mg-tls-sharded-shard1-pods.demo.svc:27017,mg-tls-sharded-shard1-1.mg-tls-sharded-shard1-pods.demo.svc:27017,mg-tls-sharded-shard1-2.mg-tls-sharded-shard1-pods.demo.svc:27017
+    stash:
+      addon:
+        backupTask:
+          name: mongodb-backup-4.2.3
+        restoreTask:
+          name: mongodb-restore-4.2.3
+  secret:
+    name: mg-tls-sharded-auth
+  tlsSecret:
+    name: mg-tls-sharded-client-cert
+  type: kubedb.com/mongodb
+  version: 4.2.3

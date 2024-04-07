@@ -1,0 +1,15 @@
+cat > /tmp/load.sh
+
+#!/bin/bash
+
+# Function to consume memory
+consume_memory() {
+    echo "Consuming memory..."
+    array=()
+    while true; do
+        array+=($(seq 1 10000))
+    done
+}
+
+# Execute function to consume memory
+consume_memory

@@ -1,0 +1,62 @@
+# kubectl create sa sc
+# kubectl create clusterrole sc --verb get --resource storageclasses
+# kubectl create clusterrolebinding sc --clusterrole=sc --serviceaccount=default:sc
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: app
+spec:
+  template:
+    spec:
+      serviceAccountName: sc
+      containers:
+        - name: fetch
+          image: alpine:latest
+          command:
+            - "/bin/sh"
+            - "-c"
+            - |
+              apk update
+              apk add curl jq
+              curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+              chmod +x kubectl
+              mv kubectl /usr/local/bin/kubectl
+              kubectl get sc -o=json | jq -r '.items[] | select(.metadata.annotations["storageclass.kubernetes.io/is-default-class"] == "true") | .metadata.name' | xargs -I {} kubectl get sc {} -o yaml > /yoo/storage-class-info.yaml
+              cat /yoo/storage-class-info.yaml
+          volumeMounts:
+            - name: shared-data
+              mountPath: /yoo
+      restartPolicy: Never
+      volumes:
+        - name: shared-data
+          emptyDir: {}
+
+
+# allowVolumeExpansion: true
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   annotations:
+#     components.gke.io/component-name: pdcsi
+#     components.gke.io/component-version: 0.16.14
+#     components.gke.io/layer: addon
+#     storageclass.kubernetes.io/is-default-class: "false"
+#   labels:
+#     addonmanager.kubernetes.io/mode: EnsureExists
+#     k8s-app: gcp-compute-persistent-disk-csi-driver
+#   name: standard-rwo-new
+# parameters:
+#   type: pd-balanced
+# provisioner: pd.csi.storage.gke.io
+# reclaimPolicy: Delete
+# volumeBindingMode: WaitForFirstConsumer
+# mountOptions:
+# - noatime
+
+
+# cat /sys/kernel/mm/transparent_hugepage/enabled
+# cat /proc/sys/vm/max_map_count  OR sysctl vm.max_map_count
+
+# fs=$(df -h | awk '$6 == "/" {print $1}')
+# blockdev --setra 32 "${fs}"

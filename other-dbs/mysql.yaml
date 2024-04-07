@@ -1,0 +1,15 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MySQL
+metadata:
+  name: mysql
+  namespace: db
+spec:
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  storageType: Durable
+  terminationPolicy: Delete
+  version: 8.0.35

@@ -1,0 +1,243 @@
+~> kubectl logs -f -n demo pod/standalone-0 -c mongodb
+about to fork child process, waiting until server is ready for connections.
+forked process: 30
+
+{"t":{"$date":"2023-08-29T05:27:39.608+00:00"},"s":"I",  "c":"CONTROL",  "id":20698,   "ctx":"main","msg":"***** SERVER RESTARTED *****"}
+{"t":{"$date":"2023-08-29T05:27:39.611+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+{"t":{"$date":"2023-08-29T05:27:39.612+00:00"},"s":"W",  "c":"ASIO",     "id":22601,   "ctx":"main","msg":"No TransportLayer configured during NetworkInterface startup"}
+{"t":{"$date":"2023-08-29T05:27:39.612+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"STORAGE",  "id":4615611, "ctx":"initandlisten","msg":"MongoDB starting","attr":{"pid":30,"port":27017,"dbPath":"/data/db","architecture":"64-bit","host":"standalone-0"}}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"CONTROL",  "id":23403,   "ctx":"initandlisten","msg":"Build Info","attr":{"buildInfo":{"version":"4.4.6","gitVersion":"72e66213c2c3eab37d9358d5e78ad7f5c1d0d0d7","openSSLVersion":"OpenSSL 1.1.1  11 Sep 2018","modules":[],"allocator":"tcmalloc","environment":{"distmod":"ubuntu1804","distarch":"x86_64","target_arch":"x86_64"}}}}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"CONTROL",  "id":51765,   "ctx":"initandlisten","msg":"Operating System","attr":{"os":{"name":"Ubuntu","version":"18.04"}}}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"CONTROL",  "id":21951,   "ctx":"initandlisten","msg":"Options set by command line","attr":{"options":{"net":{"bindIp":"127.0.0.1","ipv6":true,"port":27017,"tls":{"CAFile":"/var/run/mongodb/tls/ca.crt","certificateKeyFile":"/var/run/mongodb/tls/mongo.pem","mode":"allowTLS"}},"processManagement":{"fork":true,"pidFilePath":"/tmp/docker-entrypoint-temp-mongod.pid"},"storage":{"dbPath":"/data/db"},"systemLog":{"destination":"file","logAppend":true,"path":"/proc/1/fd/1"}}}}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"STORAGE",  "id":22297,   "ctx":"initandlisten","msg":"Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem","tags":["startupWarnings"]}
+{"t":{"$date":"2023-08-29T05:27:39.613+00:00"},"s":"I",  "c":"STORAGE",  "id":22315,   "ctx":"initandlisten","msg":"Opening WiredTiger","attr":{"config":"create,cache_size=7378M,session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress,compact_progress],"}}
+{"t":{"$date":"2023-08-29T05:27:39.763+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286859:763138][30:0x7fdf8d5afac0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global recovery timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:39.763+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286859:763180][30:0x7fdf8d5afac0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global oldest timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:39.771+00:00"},"s":"I",  "c":"STORAGE",  "id":4795906, "ctx":"initandlisten","msg":"WiredTiger opened","attr":{"durationMillis":158}}
+{"t":{"$date":"2023-08-29T05:27:39.771+00:00"},"s":"I",  "c":"RECOVERY", "id":23987,   "ctx":"initandlisten","msg":"WiredTiger recoveryTimestamp","attr":{"recoveryTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.783+00:00"},"s":"I",  "c":"STORAGE",  "id":4366408, "ctx":"initandlisten","msg":"No table logging settings modifications are required for existing WiredTiger tables","attr":{"loggingEnabled":true}}
+{"t":{"$date":"2023-08-29T05:27:39.784+00:00"},"s":"I",  "c":"STORAGE",  "id":22262,   "ctx":"initandlisten","msg":"Timestamp monitor starting"}
+{"t":{"$date":"2023-08-29T05:27:39.791+00:00"},"s":"W",  "c":"CONTROL",  "id":22120,   "ctx":"initandlisten","msg":"Access control is not enabled for the database. Read and write access to data and configuration is unrestricted","tags":["startupWarnings"]}
+{"t":{"$date":"2023-08-29T05:27:39.791+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"initandlisten","msg":"createCollection","attr":{"namespace":"admin.system.version","uuidDisposition":"provided","uuid":{"uuid":{"$uuid":"a2f5b317-9c93-4adc-9dac-f44409e6eda6"}},"options":{"uuid":{"$uuid":"a2f5b317-9c93-4adc-9dac-f44409e6eda6"}}}}
+{"t":{"$date":"2023-08-29T05:27:39.803+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"initandlisten","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"admin.system.version","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.803+00:00"},"s":"I",  "c":"COMMAND",  "id":20459,   "ctx":"initandlisten","msg":"Setting featureCompatibilityVersion","attr":{"newVersion":"4.4"}}
+{"t":{"$date":"2023-08-29T05:27:39.804+00:00"},"s":"I",  "c":"STORAGE",  "id":20536,   "ctx":"initandlisten","msg":"Flow Control is enabled on this deployment"}
+{"t":{"$date":"2023-08-29T05:27:39.804+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"initandlisten","msg":"createCollection","attr":{"namespace":"local.startup_log","uuidDisposition":"generated","uuid":{"uuid":{"$uuid":"fef51144-6136-4b1d-9391-04cf1b5fcf09"}},"options":{"capped":true,"size":10485760}}}
+{"t":{"$date":"2023-08-29T05:27:39.817+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"initandlisten","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"local.startup_log","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.818+00:00"},"s":"I",  "c":"FTDC",     "id":20625,   "ctx":"initandlisten","msg":"Initializing full-time diagnostic data capture","attr":{"dataDirectory":"/data/db/diagnostic.data"}}
+{"t":{"$date":"2023-08-29T05:27:39.818+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"/tmp/mongodb-27017.sock"}}
+{"t":{"$date":"2023-08-29T05:27:39.818+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"127.0.0.1"}}
+{"t":{"$date":"2023-08-29T05:27:39.818+00:00"},"s":"I",  "c":"NETWORK",  "id":23016,   "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"on"}}
+{"t":{"$date":"2023-08-29T05:27:39.818+00:00"},"s":"I",  "c":"CONTROL",  "id":20712,   "ctx":"LogicalSessionCacheReap","msg":"Sessions collection is not set up; waiting until next sessions reap interval","attr":{"error":"NamespaceNotFound: config.system.sessions does not exist"}}
+{"t":{"$date":"2023-08-29T05:27:39.819+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"LogicalSessionCacheRefresh","msg":"createCollection","attr":{"namespace":"config.system.sessions","uuidDisposition":"generated","uuid":{"uuid":{"$uuid":"bdd4bff8-f060-4dff-a6c8-5fc5688cbb17"}},"options":{}}}
+child process started successfully, parent exiting
+{"t":{"$date":"2023-08-29T05:27:39.839+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"LogicalSessionCacheRefresh","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"config.system.sessions","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.839+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"LogicalSessionCacheRefresh","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"config.system.sessions","index":"lsidTTLIndex","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.857+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:59942","connectionId":1,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:39.857+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn1","msg":"client metadata","attr":{"remote":"127.0.0.1:59942","client":"conn1","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:39.860+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn1","msg":"Connection ended","attr":{"remote":"127.0.0.1:59942","connectionId":1,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:27:39.904+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:59954","connectionId":2,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:39.904+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn2","msg":"client metadata","attr":{"remote":"127.0.0.1:59954","client":"conn2","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:39.922+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"conn2","msg":"createCollection","attr":{"namespace":"admin.system.users","uuidDisposition":"generated","uuid":{"uuid":{"$uuid":"8023cef5-60da-4a88-b8b5-285bacc96b5a"}},"options":{}}}
+{"t":{"$date":"2023-08-29T05:27:39.944+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"conn2","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"admin.system.users","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:39.944+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"conn2","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"admin.system.users","index":"user_1_db_1","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+Successfully added user: {
+	"user" : "root",
+	"roles" : [
+		{
+			"role" : "root",
+			"db" : "admin"
+		}
+	]
+}
+Error saving history file: FileOpenFailed Unable to open() file /home/mongodb/.dbshell: No such file or directory
+{"t":{"$date":"2023-08-29T05:27:39.945+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn2","msg":"Connection ended","attr":{"remote":"127.0.0.1:59954","connectionId":2,"connectionCount":0}}
+
+/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+
+
+{"t":{"$date":"2023-08-29T05:27:39.957+00:00"},"s":"I",  "c":"CONTROL",  "id":20698,   "ctx":"main","msg":"***** SERVER RESTARTED *****"}
+{"t":{"$date":"2023-08-29T05:27:39.959+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"W",  "c":"ASIO",     "id":22601,   "ctx":"main","msg":"No TransportLayer configured during NetworkInterface startup"}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
+killing process with pid: 30
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"CONTROL",  "id":23377,   "ctx":"SignalHandler","msg":"Received signal","attr":{"signal":15,"error":"Terminated"}}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"CONTROL",  "id":23378,   "ctx":"SignalHandler","msg":"Signal was sent by kill(2)","attr":{"pid":84,"uid":999}}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"CONTROL",  "id":23381,   "ctx":"SignalHandler","msg":"will terminate after current cmd ends"}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"REPL",     "id":4784900, "ctx":"SignalHandler","msg":"Stepping down the ReplicationCoordinator for shutdown","attr":{"waitTimeMillis":10000}}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"COMMAND",  "id":4784901, "ctx":"SignalHandler","msg":"Shutting down the MirrorMaestro"}
+{"t":{"$date":"2023-08-29T05:27:39.960+00:00"},"s":"I",  "c":"SHARDING", "id":4784902, "ctx":"SignalHandler","msg":"Shutting down the WaitForMajorityService"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"CONTROL",  "id":4784903, "ctx":"SignalHandler","msg":"Shutting down the LogicalSessionCache"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"NETWORK",  "id":20562,   "ctx":"SignalHandler","msg":"Shutdown: going to close listening sockets"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"NETWORK",  "id":23017,   "ctx":"listener","msg":"removing socket file","attr":{"path":"/tmp/mongodb-27017.sock"}}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"NETWORK",  "id":4784905, "ctx":"SignalHandler","msg":"Shutting down the global connection pool"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784906, "ctx":"SignalHandler","msg":"Shutting down the FlowControlTicketholder"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"-",        "id":20520,   "ctx":"SignalHandler","msg":"Stopping further Flow Control ticket acquisitions."}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784908, "ctx":"SignalHandler","msg":"Shutting down the PeriodicThreadToAbortExpiredTransactions"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784934, "ctx":"SignalHandler","msg":"Shutting down the PeriodicThreadToDecreaseSnapshotHistoryCachePressure"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"REPL",     "id":4784909, "ctx":"SignalHandler","msg":"Shutting down the ReplicationCoordinator"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"SHARDING", "id":4784910, "ctx":"SignalHandler","msg":"Shutting down the ShardingInitializationMongoD"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"REPL",     "id":4784911, "ctx":"SignalHandler","msg":"Enqueuing the ReplicationStateTransitionLock for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"-",        "id":4784912, "ctx":"SignalHandler","msg":"Killing all operations for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"-",        "id":4695300, "ctx":"SignalHandler","msg":"Interrupted all currently running operations","attr":{"opsKilled":3}}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"COMMAND",  "id":4784913, "ctx":"SignalHandler","msg":"Shutting down all open transactions"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"REPL",     "id":4784914, "ctx":"SignalHandler","msg":"Acquiring the ReplicationStateTransitionLock for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"INDEX",    "id":4784915, "ctx":"SignalHandler","msg":"Shutting down the IndexBuildsCoordinator"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"REPL",     "id":4784916, "ctx":"SignalHandler","msg":"Reacquiring the ReplicationStateTransitionLock for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"REPL",     "id":4784917, "ctx":"SignalHandler","msg":"Attempting to mark clean shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"NETWORK",  "id":4784918, "ctx":"SignalHandler","msg":"Shutting down the ReplicaSetMonitor"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"SHARDING", "id":4784921, "ctx":"SignalHandler","msg":"Shutting down the MigrationUtilExecutor"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"CONTROL",  "id":4784925, "ctx":"SignalHandler","msg":"Shutting down free monitoring"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"CONTROL",  "id":20609,   "ctx":"SignalHandler","msg":"Shutting down free monitoring"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784927, "ctx":"SignalHandler","msg":"Shutting down the HealthLog"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784929, "ctx":"SignalHandler","msg":"Acquiring the global lock for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":4784930, "ctx":"SignalHandler","msg":"Shutting down the storage engine"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":22320,   "ctx":"SignalHandler","msg":"Shutting down journal flusher thread"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":22321,   "ctx":"SignalHandler","msg":"Finished shutting down journal flusher thread"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":20282,   "ctx":"SignalHandler","msg":"Deregistering all the collections"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":22261,   "ctx":"SignalHandler","msg":"Timestamp monitor shutting down"}
+{"t":{"$date":"2023-08-29T05:27:39.961+00:00"},"s":"I",  "c":"STORAGE",  "id":22317,   "ctx":"SignalHandler","msg":"WiredTigerKVEngine shutting down"}
+{"t":{"$date":"2023-08-29T05:27:39.962+00:00"},"s":"I",  "c":"STORAGE",  "id":22318,   "ctx":"SignalHandler","msg":"Shutting down session sweeper thread"}
+{"t":{"$date":"2023-08-29T05:27:39.963+00:00"},"s":"I",  "c":"STORAGE",  "id":22319,   "ctx":"SignalHandler","msg":"Finished shutting down session sweeper thread"}
+{"t":{"$date":"2023-08-29T05:27:39.963+00:00"},"s":"I",  "c":"STORAGE",  "id":22322,   "ctx":"SignalHandler","msg":"Shutting down checkpoint thread"}
+{"t":{"$date":"2023-08-29T05:27:39.963+00:00"},"s":"I",  "c":"STORAGE",  "id":22323,   "ctx":"SignalHandler","msg":"Finished shutting down checkpoint thread"}
+{"t":{"$date":"2023-08-29T05:27:39.963+00:00"},"s":"I",  "c":"STORAGE",  "id":4795902, "ctx":"SignalHandler","msg":"Closing WiredTiger","attr":{"closeConfig":"leak_memory=true,"}}
+{"t":{"$date":"2023-08-29T05:27:39.963+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"SignalHandler","msg":"WiredTiger message","attr":{"message":"[1693286859:963731][30:0x7fdf868a6700], close_ckpt: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 47, snapshot max: 47 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:40.004+00:00"},"s":"I",  "c":"STORAGE",  "id":4795901, "ctx":"SignalHandler","msg":"WiredTiger closed","attr":{"durationMillis":41}}
+{"t":{"$date":"2023-08-29T05:27:40.004+00:00"},"s":"I",  "c":"STORAGE",  "id":22279,   "ctx":"SignalHandler","msg":"shutdown: removing fs lock..."}
+{"t":{"$date":"2023-08-29T05:27:40.004+00:00"},"s":"I",  "c":"-",        "id":4784931, "ctx":"SignalHandler","msg":"Dropping the scope cache for shutdown"}
+{"t":{"$date":"2023-08-29T05:27:40.004+00:00"},"s":"I",  "c":"FTDC",     "id":4784926, "ctx":"SignalHandler","msg":"Shutting down full-time data capture"}
+{"t":{"$date":"2023-08-29T05:27:40.004+00:00"},"s":"I",  "c":"FTDC",     "id":20626,   "ctx":"SignalHandler","msg":"Shutting down full-time diagnostic data capture"}
+{"t":{"$date":"2023-08-29T05:27:41.001+00:00"},"s":"I",  "c":"CONTROL",  "id":20565,   "ctx":"SignalHandler","msg":"Now exiting"}
+{"t":{"$date":"2023-08-29T05:27:41.001+00:00"},"s":"I",  "c":"CONTROL",  "id":23138,   "ctx":"SignalHandler","msg":"Shutting down","attr":{"exitCode":0}}
+
+MongoDB init process complete; ready for start up.
+
+{"t":{"$date":"2023-08-29T05:27:41.998+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"W",  "c":"ASIO",     "id":22601,   "ctx":"main","msg":"No TransportLayer configured during NetworkInterface startup"}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"I",  "c":"STORAGE",  "id":4615611, "ctx":"initandlisten","msg":"MongoDB starting","attr":{"pid":1,"port":27017,"dbPath":"/data/db","architecture":"64-bit","host":"standalone-0"}}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"I",  "c":"CONTROL",  "id":23403,   "ctx":"initandlisten","msg":"Build Info","attr":{"buildInfo":{"version":"4.4.6","gitVersion":"72e66213c2c3eab37d9358d5e78ad7f5c1d0d0d7","openSSLVersion":"OpenSSL 1.1.1  11 Sep 2018","modules":[],"allocator":"tcmalloc","environment":{"distmod":"ubuntu1804","distarch":"x86_64","target_arch":"x86_64"}}}}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"I",  "c":"CONTROL",  "id":51765,   "ctx":"initandlisten","msg":"Operating System","attr":{"os":{"name":"Ubuntu","version":"18.04"}}}
+{"t":{"$date":"2023-08-29T05:27:41.999+00:00"},"s":"I",  "c":"CONTROL",  "id":21951,   "ctx":"initandlisten","msg":"Options set by command line","attr":{"options":{"net":{"bindIp":"::,0.0.0.0","ipv6":true,"port":27017,"tls":{"CAFile":"/var/run/mongodb/tls/ca.crt","certificateKeyFile":"/var/run/mongodb/tls/mongo.pem","mode":"requireTLS"}},"security":{"authorization":"enabled"},"storage":{"dbPath":"/data/db"}}}}
+{"t":{"$date":"2023-08-29T05:27:42.000+00:00"},"s":"I",  "c":"STORAGE",  "id":22270,   "ctx":"initandlisten","msg":"Storage engine to use detected by data files","attr":{"dbpath":"/data/db","storageEngine":"wiredTiger"}}
+{"t":{"$date":"2023-08-29T05:27:42.000+00:00"},"s":"I",  "c":"STORAGE",  "id":22297,   "ctx":"initandlisten","msg":"Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem","tags":["startupWarnings"]}
+{"t":{"$date":"2023-08-29T05:27:42.000+00:00"},"s":"I",  "c":"STORAGE",  "id":22315,   "ctx":"initandlisten","msg":"Opening WiredTiger","attr":{"config":"create,cache_size=7378M,session_max=33000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000,close_scan_interval=10,close_handle_minimum=250),statistics_log=(wait=0),verbose=[recovery_progress,checkpoint_progress,compact_progress],"}}
+{"t":{"$date":"2023-08-29T05:27:42.131+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:131557][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 1 through 2"}}
+{"t":{"$date":"2023-08-29T05:27:42.172+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:172074][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 2 through 2"}}
+{"t":{"$date":"2023-08-29T05:27:42.249+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:249324][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Main recovery loop: starting at 1/31872 to 2/256"}}
+{"t":{"$date":"2023-08-29T05:27:42.319+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:319582][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 1 through 2"}}
+{"t":{"$date":"2023-08-29T05:27:42.350+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:350860][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY_PROGRESS] Recovering log 2 through 2"}}
+{"t":{"$date":"2023-08-29T05:27:42.376+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:376961][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global recovery timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:42.376+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:376988][1:0x7fe9b1214ac0], txn-recover: [WT_VERB_RECOVERY | WT_VERB_RECOVERY_PROGRESS] Set global oldest timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:42.378+00:00"},"s":"I",  "c":"STORAGE",  "id":22430,   "ctx":"initandlisten","msg":"WiredTiger message","attr":{"message":"[1693286862:378710][1:0x7fe9b1214ac0], WT_SESSION.checkpoint: [WT_VERB_CHECKPOINT_PROGRESS] saving checkpoint snapshot min: 1, snapshot max: 1 snapshot count: 0, oldest timestamp: (0, 0) , meta checkpoint timestamp: (0, 0)"}}
+{"t":{"$date":"2023-08-29T05:27:42.387+00:00"},"s":"I",  "c":"STORAGE",  "id":4795906, "ctx":"initandlisten","msg":"WiredTiger opened","attr":{"durationMillis":387}}
+{"t":{"$date":"2023-08-29T05:27:42.387+00:00"},"s":"I",  "c":"RECOVERY", "id":23987,   "ctx":"initandlisten","msg":"WiredTiger recoveryTimestamp","attr":{"recoveryTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:27:42.389+00:00"},"s":"I",  "c":"STORAGE",  "id":4366408, "ctx":"initandlisten","msg":"No table logging settings modifications are required for existing WiredTiger tables","attr":{"loggingEnabled":true}}
+{"t":{"$date":"2023-08-29T05:27:42.391+00:00"},"s":"I",  "c":"STORAGE",  "id":22262,   "ctx":"initandlisten","msg":"Timestamp monitor starting"}
+{"t":{"$date":"2023-08-29T05:27:42.397+00:00"},"s":"I",  "c":"STORAGE",  "id":20536,   "ctx":"initandlisten","msg":"Flow Control is enabled on this deployment"}
+{"t":{"$date":"2023-08-29T05:27:42.400+00:00"},"s":"I",  "c":"FTDC",     "id":20625,   "ctx":"initandlisten","msg":"Initializing full-time diagnostic data capture","attr":{"dataDirectory":"/data/db/diagnostic.data"}}
+{"t":{"$date":"2023-08-29T05:27:42.400+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"/tmp/mongodb-27017.sock"}}
+{"t":{"$date":"2023-08-29T05:27:42.400+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"0.0.0.0"}}
+{"t":{"$date":"2023-08-29T05:27:42.400+00:00"},"s":"I",  "c":"NETWORK",  "id":23015,   "ctx":"listener","msg":"Listening on","attr":{"address":"::"}}
+{"t":{"$date":"2023-08-29T05:27:42.400+00:00"},"s":"I",  "c":"NETWORK",  "id":23016,   "ctx":"listener","msg":"Waiting for connections","attr":{"port":27017,"ssl":"on"}}
+{"t":{"$date":"2023-08-29T05:27:49.022+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:60778","connectionId":1,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:49.024+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:60782","connectionId":2,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:27:49.026+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn1","msg":"client metadata","attr":{"remote":"127.0.0.1:60778","client":"conn1","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:49.027+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn2","msg":"client metadata","attr":{"remote":"127.0.0.1:60782","client":"conn2","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:49.037+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn2","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:60782","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:27:49.037+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn1","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:60778","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:27:49.039+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn1","msg":"Connection ended","attr":{"remote":"127.0.0.1:60778","connectionId":1,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:49.039+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn2","msg":"Connection ended","attr":{"remote":"127.0.0.1:60782","connectionId":2,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:27:59.013+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:38786","connectionId":3,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:59.016+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn3","msg":"client metadata","attr":{"remote":"127.0.0.1:38786","client":"conn3","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:59.022+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:38788","connectionId":4,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:27:59.025+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn4","msg":"client metadata","attr":{"remote":"127.0.0.1:38788","client":"conn4","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:27:59.025+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn3","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:38786","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:27:59.028+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn3","msg":"Connection ended","attr":{"remote":"127.0.0.1:38786","connectionId":3,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:27:59.035+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn4","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:38788","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:27:59.038+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn4","msg":"Connection ended","attr":{"remote":"127.0.0.1:38788","connectionId":4,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:28:09.006+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:55666","connectionId":5,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:09.009+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn5","msg":"client metadata","attr":{"remote":"127.0.0.1:55666","client":"conn5","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:28:09.016+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:55674","connectionId":6,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:09.018+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn6","msg":"client metadata","attr":{"remote":"127.0.0.1:55674","client":"conn6","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:28:09.019+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn5","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:55666","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:09.021+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn5","msg":"Connection ended","attr":{"remote":"127.0.0.1:55666","connectionId":5,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:09.029+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn6","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:55674","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:09.033+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn6","msg":"Connection ended","attr":{"remote":"127.0.0.1:55674","connectionId":6,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:28:09.916+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:55150","connectionId":7,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:09.916+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:55138","connectionId":8,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:09.929+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn8","msg":"client metadata","attr":{"remote":"10.244.0.11:55138","client":"conn8","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:09.929+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn7","msg":"client metadata","attr":{"remote":"10.244.0.11:55150","client":"conn7","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:09.930+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:55154","connectionId":9,"connectionCount":3}}
+{"t":{"$date":"2023-08-29T05:28:09.934+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn9","msg":"client metadata","attr":{"remote":"10.244.0.11:55154","client":"conn9","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:09.940+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn9","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"10.244.0.11:55154","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:09.941+00:00"},"s":"I",  "c":"STORAGE",  "id":20320,   "ctx":"conn9","msg":"createCollection","attr":{"namespace":"kubedb-system.health-check","uuidDisposition":"generated","uuid":{"uuid":{"$uuid":"7806c94b-3d97-4ec3-b897-e750e4114919"}},"options":{}}}
+{"t":{"$date":"2023-08-29T05:28:09.953+00:00"},"s":"I",  "c":"INDEX",    "id":20345,   "ctx":"conn9","msg":"Index build: done building","attr":{"buildUUID":null,"namespace":"kubedb-system.health-check","index":"_id_","commitTimestamp":{"$timestamp":{"t":0,"i":0}}}}
+{"t":{"$date":"2023-08-29T05:28:09.962+00:00"},"s":"I",  "c":"-",        "id":20883,   "ctx":"conn8","msg":"Interrupted operation as its client disconnected","attr":{"opId":400}}
+{"t":{"$date":"2023-08-29T05:28:09.962+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn7","msg":"Connection ended","attr":{"remote":"10.244.0.11:55150","connectionId":7,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:09.962+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn9","msg":"Connection ended","attr":{"remote":"10.244.0.11:55154","connectionId":9,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:09.963+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn8","msg":"Connection ended","attr":{"remote":"10.244.0.11:55138","connectionId":8,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:28:19.001+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:58524","connectionId":10,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:19.003+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn10","msg":"client metadata","attr":{"remote":"127.0.0.1:58524","client":"conn10","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:28:19.009+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"127.0.0.1:58534","connectionId":11,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:19.012+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn11","msg":"client metadata","attr":{"remote":"127.0.0.1:58534","client":"conn11","doc":{"application":{"name":"MongoDB Shell"},"driver":{"name":"MongoDB Internal Client","version":"4.4.6"},"os":{"type":"Linux","name":"Ubuntu","architecture":"x86_64","version":"18.04"}}}}
+{"t":{"$date":"2023-08-29T05:28:19.013+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn10","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:58524","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:19.015+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn10","msg":"Connection ended","attr":{"remote":"127.0.0.1:58524","connectionId":10,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:19.023+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn11","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"127.0.0.1:58534","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:19.026+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn11","msg":"Connection ended","attr":{"remote":"127.0.0.1:58534","connectionId":11,"connectionCount":0}}
+{"t":{"$date":"2023-08-29T05:28:19.914+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:51742","connectionId":12,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:19.914+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:51740","connectionId":13,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:19.918+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn12","msg":"client metadata","attr":{"remote":"10.244.0.11:51742","client":"conn12","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:19.918+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn13","msg":"client metadata","attr":{"remote":"10.244.0.11:51740","client":"conn13","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:19.919+00:00"},"s":"I",  "c":"NETWORK",  "id":22943,   "ctx":"listener","msg":"Connection accepted","attr":{"remote":"10.244.0.11:51760","connectionId":14,"connectionCount":3}}
+{"t":{"$date":"2023-08-29T05:28:19.922+00:00"},"s":"I",  "c":"NETWORK",  "id":51800,   "ctx":"conn14","msg":"client metadata","attr":{"remote":"10.244.0.11:51760","client":"conn14","doc":{"driver":{"name":"mongo-go-driver","version":"v1.10.2"},"os":{"type":"linux","architecture":"amd64"},"platform":"go1.20.7"}}}
+{"t":{"$date":"2023-08-29T05:28:19.928+00:00"},"s":"I",  "c":"ACCESS",   "id":20250,   "ctx":"conn14","msg":"Authentication succeeded","attr":{"mechanism":"SCRAM-SHA-256","speculative":true,"principalName":"root","authenticationDatabase":"admin","remote":"10.244.0.11:51760","extraInfo":{}}}
+{"t":{"$date":"2023-08-29T05:28:19.929+00:00"},"s":"I",  "c":"-",        "id":20883,   "ctx":"conn12","msg":"Interrupted operation as its client disconnected","attr":{"opId":550}}
+{"t":{"$date":"2023-08-29T05:28:19.929+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn13","msg":"Connection ended","attr":{"remote":"10.244.0.11:51740","connectionId":13,"connectionCount":2}}
+{"t":{"$date":"2023-08-29T05:28:19.929+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn14","msg":"Connection ended","attr":{"remote":"10.244.0.11:51760","connectionId":14,"connectionCount":1}}
+{"t":{"$date":"2023-08-29T05:28:19.929+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn12","msg":"Connection ended","attr":{"remote":"10.244.0.11:51742","connectionId":12,"connectionCount":0}}
+
+
+---------
+mongo -u root -p $MONGO_INITDB_ROOT_PASSWORD
+
+mongo --tls --tlsCAFile /var/run/mongodb/tls/ca.crt --tlsCertificateKeyFile /var/run/mongodb/tls/client.pem admin --host localhost --authenticationMechanism MONGODB-X509 --authenticationDatabase='$external' -u "CN=root,OU=client,O=kubedb" --quiet
+
+db.adminCommand({"getCmdLineOpts":1})
+{
+	"argv" : [
+		"mongod",
+		"--dbpath=/data/db",
+		"--auth",
+		"--port=27017",
+		"--ipv6",
+		"--bind_ip=::,0.0.0.0",
+		"--tlsMode=requireTLS",
+		"--tlsCAFile=/var/run/mongodb/tls/ca.crt",
+		"--tlsCertificateKeyFile=/var/run/mongodb/tls/mongo.pem"
+	],
+	"parsed" : {
+		"net" : {
+			"bindIp" : "::,0.0.0.0",
+			"ipv6" : true,
+			"port" : 27017,
+			"tls" : {
+				"CAFile" : "/var/run/mongodb/tls/ca.crt",
+				"certificateKeyFile" : "/var/run/mongodb/tls/mongo.pem",
+				"mode" : "requireTLS"
+			}
+		},
+		"security" : {
+			"authorization" : "enabled"
+		},
+		"storage" : {
+			"dbPath" : "/data/db"
+		}
+	},
+	"ok" : 1
+}
+
+> use admin
+> db["system.users"].find().pretty()

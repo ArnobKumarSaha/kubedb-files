@@ -1,0 +1,94 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"ops.kubedb.com/v1alpha1","kind":"MongoDBOpsRequest","metadata":{"annotations":{},"name":"down","namespace":"demo"},"spec":{"apply":"Always","databaseRef":{"name":"sh7"},"readinessCriteria":{"objectsCountDiffPercentage":10,"oplogMaxLagSeconds":20},"timeout":"5m","type":"VerticalScaling","verticalScaling":{"arbiter":{"resources":{"limits":{"cpu":"0.9","memory":"900Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"configServer":{"resources":{"limits":{"cpu":"0.9","memory":"900Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"mongos":{"resources":{"limits":{"cpu":"0.8","memory":"800Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"shard":{"resources":{"limits":{"cpu":"1.1","memory":"1100Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}}}}}
+  creationTimestamp: "2024-01-11T10:22:54Z"
+  generation: 1
+  name: down
+  namespace: demo
+  resourceVersion: "2922358"
+  uid: fcb89f60-2804-4889-bec2-d92625f55fe7
+spec:
+  apply: Always
+  databaseRef:
+    name: sh7
+  readinessCriteria:
+    objectsCountDiffPercentage: 10
+    oplogMaxLagSeconds: 20
+  timeout: 5m
+  type: VerticalScaling
+  verticalScaling:
+    arbiter:
+      resources:
+        limits:
+          cpu: "0.9"
+          memory: 900Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    configServer:
+      resources:
+        limits:
+          cpu: "0.9"
+          memory: 900Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    mongos:
+      resources:
+        limits:
+          cpu: "0.8"
+          memory: 800Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    shard:
+      resources:
+        limits:
+          cpu: "1.1"
+          memory: 1100Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+status:
+  conditions:
+  - lastTransitionTime: "2024-01-11T10:22:55Z"
+    message: MongoDB ops request is vertically scaling database
+    observedGeneration: 1
+    reason: VerticalScale
+    status: "True"
+    type: VerticalScale
+  - lastTransitionTime: "2024-01-11T10:24:36Z"
+    message: Successfully Vertically Scaled ConfigServer Resources
+    observedGeneration: 1
+    reason: VerticalScaleConfigServer
+    status: "True"
+    type: VerticalScaleConfigServer
+  - lastTransitionTime: "2024-01-11T10:26:11Z"
+    message: Successfully Vertically Scaled Mongos Resources
+    observedGeneration: 1
+    reason: VerticalScaleMongos
+    status: "True"
+    type: VerticalScaleMongos
+  - lastTransitionTime: "2024-01-11T10:32:42Z"
+    message: Successfully Vertically Scaled Shard Resources
+    observedGeneration: 1
+    reason: VerticalScaleShard
+    status: "True"
+    type: VerticalScaleShard
+  - lastTransitionTime: "2024-01-11T10:34:03Z"
+    message: Successfully Vertically Scaled arbiter Resources
+    observedGeneration: 1
+    reason: VerticalScaleArbiter
+    status: "True"
+    type: VerticalScaleArbiter
+  - lastTransitionTime: "2024-01-11T10:34:03Z"
+    message: Successfully Vertically Scaled Database
+    observedGeneration: 1
+    reason: Successful
+    status: "True"
+    type: Successful
+  observedGeneration: 1
+  phase: Successful

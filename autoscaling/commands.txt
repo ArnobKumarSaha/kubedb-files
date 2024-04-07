@@ -1,0 +1,42 @@
+
+# yq 
+watch "kubectl get mgscaler -n demo compute -o=yaml | yq '.status.vpas[0]'"
+watch "kubectl get mgscaler -n demo compute -o=yaml | yq '.status.checkpoints[0]'"
+
+# json 
+# watch 'kubectl get mgscaler -n demo mongodb-rs-compute-as -ojsonpath={.status.vpas[0].recommendation} | yq'
+
+
+# loop through all the containers of podmetricses and show the usage for mongodb container only
+watch "kubectl get podmetrics -n demo -oyaml | yq eval '(.items[].containers[])'"
+
+# better, sorted
+watch "kubectl get podmetrics -n demo -oyaml | yq eval '.items |= sort_by(.metadata.name) | (.items[].containers |= sort_by(.name)) | (.items[].containers[])' -"
+
+
+# kubectl get podmetrics -n demo -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{range .containers[?(@.name=="mongodb")]}{.usage}{"\n"}{end}'
+
+
+
+
+
+----------
+watch "kubectl get vpacheckpoint -oyaml redis-vpa-master | yq '.status'"
+watch "kubectl get vpa -oyaml redis-vpa | yq '.status.recommendation.containerRecommendations'"
+
+
+
+# show node's taints
+kubectl get nodes gke-dataloop-small-b1fd6889-dwwq -ojsonpath={.spec.taints}
+
+
+# pod list scheduled in a node
+kubectl get pods -A --field-selector spec.nodeName=gke-dataloop-small-b1fd6889-dwwq
+
+
+# show pod's tolerations
+kubectl get pods -n kube-system gke-metrics-agent-p8jl9 -ojsonpath={.spec.tolerations} | jq
+
+
+
+

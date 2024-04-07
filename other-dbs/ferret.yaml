@@ -1,0 +1,37 @@
+apiVersion: kubedb.com/v1alpha2
+kind: FerretDB
+metadata:
+  name: fr
+  namespace: demo
+spec:
+  version: "1.18.0"
+  terminationPolicy: WipeOut
+  replicas: 1
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Gi
+  podTemplate:
+    spec:
+      containers:
+      - name: ferretdb
+        resources:
+          requests:
+            "cpu": "0.5"
+            "memory": 900Mi
+  backend:
+    externallyManaged: false
+    # postgres:
+    #   service:
+    #     name: qq
+    #     namespace: demo
+    #     pgPort: "78347"
+    #   version: "11.22-bookworm"
+
+
+#         {{- else }}
+#     //        "query": {{ $.Values.app.namespace | quote }},
+# //        "type": "constant",
+# //        {{- end }}

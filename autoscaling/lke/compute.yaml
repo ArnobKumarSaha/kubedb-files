@@ -1,0 +1,34 @@
+apiVersion: autoscaling.kubedb.com/v1alpha1
+kind: MongoDBAutoscaler
+metadata:
+  name: compute
+  namespace: demo
+spec:
+  databaseRef:
+    name: sample
+  opsRequestOptions:
+    timeout: 10m
+    apply: IfReady
+  compute:
+    replicaSet:
+      trigger: "On"
+      podLifeTimeThreshold: 6m
+      resourceDiffPercentage: 30
+      minAllowed:
+        cpu: "450m"
+        memory: 855Mi
+      maxAllowed:
+        cpu: 6
+        memory: 16Gi
+      controlledResources: ["cpu", "memory"]
+      containerControlledValues: "RequestsAndLimits"
+    nodeTopology:
+      name: lke-pools
+      # scaleUpDiffPercentage: 15
+      # scaleDownDiffPercentage: 25
+
+# Sorted NodePools
+# 0 map[cpu:{i:{value:500 scale:-3} d:{Dec:<nil>} s:500m Format:DecimalSI} memory:{i:{value:996147200 scale:0} d:{Dec:<nil>} s:950Mi Format:BinarySI}] 
+# 1 map[cpu:{i:{value:1500 scale:-3} d:{Dec:<nil>} s:1500m Format:DecimalSI} memory:{i:{value:3040870400 scale:0} d:{Dec:<nil>} s:2900Mi Format:BinarySI}] 
+# 2 map[cpu:{i:{value:3000 scale:-3} d:{Dec:<nil>} s: Format:DecimalSI} memory:{i:{value:6239027200 scale:0} d:{Dec:<nil>} s:5950Mi Format:BinarySI}] 
+# 3 map[cpu:{i:{value:5000 scale:-3} d:{Dec:<nil>} s: Format:DecimalSI} memory:{i:{value:12582912000 scale:0} d:{Dec:<nil>} s: Format:BinarySI}] 

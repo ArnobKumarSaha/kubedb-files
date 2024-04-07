@@ -1,0 +1,39 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: sample
+  namespace: demo
+spec:
+  version: "4.4.26"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs"
+  podTemplate:
+    spec:
+      nodeSelector:
+        node.kubernetes.io/instance-type: g6-standard-2
+      # tolerations:
+      # - key: nodepool
+      #   value: medium
+      #   effect: NoSchedule
+      resources:
+        requests:
+          "cpu": "1"
+          "memory": 1950Mi
+        limits:
+          "cpu": "2"
+          "memory": 3900Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 2Gi
+
+# recommender/input/cluster_feeder.go -> updatePodMemory() -> pod.Containers[i] = cnt
+# go wait.Until(c.Recommender.RunOnce, c.Opts.MetricsFetcherInterval, stopCh)
+# for {c.Recommender.RunOnce(); time.Sleep(c.Opts.MetricsFetcherInterval) }
+
+
+# allowConnectionsWithoutCertificates

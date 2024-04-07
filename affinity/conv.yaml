@@ -1,0 +1,45 @@
+
+apiVersion: apps.k8s.appscode.com/v1
+kind: PlacementPolicy
+metadata:
+  name: majority-on-spot
+spec:
+  nodeAffinity:
+  - topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
+    domains:
+      - values:
+          - us-east-2a
+          - us-east-2b
+          - us-east-2c
+        replicas: "" # empty means rest of the replicas
+    weight: 50
+  - topologyKey: karpenter.sh/capacity-type
+    whenUnsatisfiable: DoNotSchedule
+    domains:
+      - values: ["spot"]
+        replicas: "obj.replicas/2+1"
+      - values: ["on-demand"]
+        replicas: "" 
+    weight: 20
+
+# 3 pods sts
+---
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: topology.kubernetes.io/zone
+          operator: In
+          values:
+          - us-east-2a
+          - us-east-2b
+          - us-east-2c
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values:
+          - spot # for pod-0 & pod-1, it will be spot. for pod-2, it will be on-demand
+
+
+# statefulset.kubernetes.io/pod-name=web-1

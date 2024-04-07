@@ -1,0 +1,40 @@
+apiVersion: autoscaling.kubedb.com/v1alpha1
+kind: MongoDBAutoscaler
+metadata:
+  name: as
+  namespace: demo
+spec:
+  databaseRef:
+    name: mg4
+  opsRequestOptions:
+    timeout: 10m
+    apply: IfReady
+  compute:
+    replicaSet:
+      trigger: "On"
+      podLifeTimeThreshold: 5m
+      resourceDiffPercentage: 20
+      minAllowed:
+        cpu: 600m
+        memory: 600Mi
+      maxAllowed:
+        cpu: 1
+        memory: 2Gi
+      # controlledResources: ["cpu", "memory"]
+      # containerControlledValues: "RequestsAndLimits"
+    # nodeTopologyRef:
+    #   name: gke-pools
+
+
+
+# //func isCRDAvailable(kbClient client.Client, crdName string) bool {
+# //	crdName += "." + autoscalingapi.GroupName
+# //	var crd crdapi.CustomResourceDefinition
+# //	err := kbClient.Get(context.TODO(), types.NamespacedName{
+# //		Name: crdName,
+# //	}, &crd)
+# //	if err != nil && !kerr.IsNotFound(err) { // serious error
+# //		klog.Errorf("error occurred while checking CRD availability = %v\n", err)
+# //	}
+# //	return err == nil
+# //}

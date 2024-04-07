@@ -1,0 +1,82 @@
+# apiVersion: node.k8s.appscode.com/v1alpha1
+# kind: NodeTopology
+# metadata:
+#   name: lke-pools
+# spec:
+#   nodeSelectionPolicy: LabelSelector
+#   topologyKey: "kubernetes.io/hostname"
+#   nodeGroups:
+#   - topologyValue: lke147291-216473-096822cc0000
+#     capacity:
+#       cpu: 1
+#       memory: 1Gi
+#   - topologyValue: lke147291-216473-476777fe0000
+#     capacity:
+#       cpu: 4
+#       memory: 4Gi
+#   - topologyValue: lke147291-216473-652b3e320000
+#     capacity:
+#       cpu: 5
+#       memory: 5Gi
+#   - topologyValue: lke147291-216473-096822cc0000
+#     capacity:
+#       cpu: 2
+#       memory: 2Gi
+#   - topologyValue: lke147291-216473-17e3e4400000
+#     capacity:
+#       cpu: 3
+#       memory: 3Gi
+      
+
+apiVersion: node.k8s.appscode.com/v1alpha1
+kind: NodeTopology
+metadata:
+  name: gke-pools
+spec:
+  nodeSelectionPolicy: Taint
+  topologyKey: "nodepool"
+  nodeGroups:
+  - topologyValue: micro
+    capacity:
+      cpu: 1
+      memory: 1Gi
+  - topologyValue: small
+    capacity:
+      cpu: 300m
+      memory: 600Mi
+  - topologyValue: medium
+    capacity:
+      cpu: 500m
+      memory: 2Gi
+  - topologyValue: std2
+    capacity:
+      cpu: 1
+      memory: 4Gi
+  - topologyValue: std4
+    capacity:
+      cpu: 2
+      memory: 8Gi
+
+# apiVersion: node.k8s.appscode.com/v1alpha1
+# kind: NodeTopology
+# metadata:
+#   name: db-pools
+# spec:
+#   nodeSelectionPolicy: LabelSelector
+#   topologyKey: "kubedb.com/nodepool"
+#   nodeGroups:
+#   - topologyValue: tiny
+#     capacity:
+#       cpu: 2
+#       memory: 4Gi
+#   - topologyValue: small
+#     capacity:
+#       cpu: 4
+#       memory: 8Gi
+#   - topologyValue: medium
+#     capacity:
+#       cpu: 8
+#       memory: 16Gi
+
+
+

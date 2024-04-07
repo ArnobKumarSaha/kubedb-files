@@ -1,0 +1,130 @@
+
+helm uninstall -n kubedb kubedb
+
+kubectl delete crds -l app.kubernetes.io/name=kubedb
+
+helm install kubedb appscode/kubedb \
+    --version v2023.11.2 \
+    --namespace kubedb --create-namespace \
+    --set kubedb-provisioner.enabled=true \
+    --set kubedb-ops-manager.enabled=true \
+    --set kubedb-autoscaler.enabled=true \
+    --set-file global.license=/home/arnob/yamls/license/kind.txt
+
+kubectl apply -f ~/yamls/all-dbs.yaml
+
+
+kubectl apply -f https://github.com/kubedb/installer/raw/v2024.3.16/crds/kubedb-catalog-crds.yaml
+
+helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
+    --version v2024.3.16 \
+    --namespace kubedb --create-namespace \
+    --set kubedb-catalog.skipDeprecated=false \
+    --set-file global.license=/home/arnob/yamls/license/kind.txt
+
+kubectl patch deploy -n kubedb kubedb-kubedb-ops-manager -p '{"spec":{"template":{"spec":{"containers":[{"name":"operator","image":"arnobkumarsaha/kubedb-ops-manager:mg-user_linux_amd64"}]}}}}'
+
+kubectl patch mgversion 4.0.11-v1 --type="merge" --patch='{"spec": {"deprecated": false}}'
+kubectl patch mgversion 4.4.6 --type="merge" --patch='{"spec": {"deprecated": false}}'
+
+
+kubectl apply -f ~/yamls/ops/version-update.yaml
+
+----------------------------------------------
+
+
+helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
+    --version v2024.3.16 \
+    --namespace kubedb --create-namespace \
+    --set-file global.license=/home/arnob/yamls/license/kind.txt \
+    --set kubedb-provisioner.operator.securityContext.seccompProfile.type=RuntimeDefault \
+    --set kubedb-webhook-server.server.securityContext.seccompProfile.type=RuntimeDefault \
+    --set kubedb-ops-manager.operator.securityContext.seccompProfile.type=RuntimeDefault \
+    --set kubedb-autoscaler.operator.securityContext.seccompProfile.type=RuntimeDefault \
+    --set global.featureGates.RabbitMQ=true \
+    --set global.featureGates.ZooKeeper=true \
+    --set global.featureGates.Solr=true \ 
+    --set global.featureGates.Singlestore=true \
+    --set global.featureGates.Druid=true \
+    --set global.featureGates.Pgpool=true \
+    --set global.featureGates.FerretDB=true
+
+v2024.2.14
+
+--set-file global.license=/home/arnob/yamls/license/crd-test.txt \
+    --set global.featureGates.Elasticsearch=false \
+    --set global.featureGates.Kafka=false \
+    --set global.featureGates.MariaDB=false \
+    --set global.featureGates.MongoDB=true \
+    --set global.featureGates.MySQL=false \
+    --set global.featureGates.Postgres=false \
+    --set global.featureGates.Redis=false \
+    --set global.featureGates.RabbitMQ=true \
+
+--set kubedb-kubestash-catalog.enabled=true \
+--set kubedb-catalog.skipDeprecated=false \
+--wait --burst-limit=10000 --debug \
+
+
+# kubectl apply -f ~/yamls/4.4.6.yaml
+# kubectl patch mg -n demo rs --type='json' -p='[{"op": "add", "path": "/metadata/labels", "value": {"a": "b"}}]'
+# kubectl patch mg -n demo sh --type='json' -p='[{"op": "add", "path": "/metadata/labels", "value": {"a": "b"}}]'
+
+# --v=5
+# Always
+# arnobkumarsaha/kubedb-ops-manager:v0.25.0_linux_amd64
+
+# arnobkumarsaha/kubedb-provisioner:v0.38.0_linux_amd64
+# arnobkumarsaha/kubedb-webhook-server:v0.14.0_linux_amd64
+
+
+helm install kubestash oci://ghcr.io/appscode-charts/kubestash \
+  --version v2024.2.5 \
+  --namespace kubestash --create-namespace \
+  --set-file global.license=/home/arnob/yamls/license/arnob.txt
+
+kubectl kustomize client/config/crd | kubectl create -f -
+kubectl -n kube-system kustomize deploy/kubernetes/snapshot-controller | kubectl create -f -
+kubectl kustomize deploy/kubernetes/csi-snapshotter | kubectl create -f -
+
+
+
+"expr": "(kubelet_volume_stats_used_bytes /
+ on(persistentvolumeclaim) group_left(pod) (kubelet_volume_stats_capacity_bytes +
+  on(persistentvolumeclaim) group_left(pod) kube_pod_spec_volumes_persistentvolumeclaims_info{pod=~\"^$app.*\",namespace=~\"$namespace\"}) )* 100"
+
+
+
+# Import Dashbords and alerts seperately
+
+# Visualization (Grafana Dashboards)
+We have some dashboards for each of the databases we support. You can import them with a simple process : 
+https://github.com/appscode/grafana-dashboards/tree/master/mongodb#import-grafana-dashboard
+
+
+# Alerts
+To fire prometheus-alerts, you need to create a prometheusRule object. You don't need write them on your own obviously.  Running 
+```
+helm upgrade -i <db-name> appscode/mongodb-alerts -n <db-namespace> --create-namespace --version=v2023.05.09
+```
+ will create the prometheusRule for you. 
+
+If you want the dashboard for alerts also, You need to set some values with the previous command. 
+
+```
+helm repo update
+helm upgrade -i <db-name> appscode/mongodb-alerts -n <db-namespace> --create-namespace --version=v2023.05.09 \ 
+    --set grafana.enabled=true \
+    --set grafana.url=<grafana server url , example:  http://grafana.monitoring.svc:80> \
+    --set grafana.apikey=<an apiKey with write permission>
+```
+
+
+Note that, You have to run the above `helm upgrade` command with the release name equals the databasename & release namespace equals the database namspace. 
+
+
+
+sidekicks.apps.k8s.appscode.com                   2024-02-22T04:23:14Z
+nodetopologies.node.k8s.appscode.com              2024-02-22T04:23:15Z
+recommendations.supervisor.appscode.com           2024-02-22T04:23:15Z
+appbindings.appcatalog.appscode.com               2024-02-22T04:25:16Z

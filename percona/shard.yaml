@@ -1,0 +1,78 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: per4
+  namespace: demo
+spec:
+  version: percona-4.2.24
+  storageEngine: inMemory
+  storageType: Ephemeral
+  shardTopology:
+    configServer:
+      ephemeralStorage:
+        sizeLimit: "900Mi"
+      # storage:
+      #   resources:
+      #     requests:
+      #       storage: 1Gi
+      replicas: 3
+      # podTemplate:
+      #   spec:
+      #     resources:
+      #       requests:
+      #         "cpu": 0.5
+      #         "memory": 500Mi
+    mongos:
+      replicas: 2
+    shard:
+      ephemeralStorage:
+        sizeLimit: "900Mi"
+      # storage:
+      #   resources:
+      #     requests:
+      #       storage: 1Gi
+      replicas: 3
+      shards: 2
+      podTemplate:
+        spec:
+          resources:
+            requests:
+              "cpu": 0.5
+              "memory": 500Mi
+            limits:
+              "cpu": 0.8
+              "memory": 1Gi
+      # storage:
+      #   accessModes:
+      #     - ReadWriteOnce
+      #   resources:
+      #     requests:
+      #       storage: 1Gi
+  hidden:
+    podTemplate: {}
+    replicas: 1
+    storage:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+  arbiter:
+    podTemplate: {}
+  # terminationPolicy: WipeOut
+  # sslMode: requireSSL
+  # tls:
+  #   issuerRef:
+  #     apiGroup: "cert-manager.io"
+  #     kind: Issuer
+  #     name: mongo-ca-issuer
+  # clusterAuthMode: x509
+  # monitor:
+  #   agent: prometheus.io/operator
+  #   prometheus:
+  #     serviceMonitor:
+  #       labels:
+  #         release: prometheus
+  #       interval: 10s
+  # monitor:
+  #   agent: prometheus.io/builtin

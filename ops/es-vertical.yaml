@@ -1,0 +1,42 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: ElasticsearchOpsRequest
+metadata:
+  name: vscale
+  namespace: demo
+spec:
+  databaseRef:
+    name: es
+  type: VerticalScaling
+  verticalScaling:
+    data:
+      resources:
+        limits:
+          cpu: 800m
+          memory: 1.5Gi
+        requests:
+          cpu: 800m
+          memory: 1.5Gi
+      nodeSelectionPolicy: LabelSelector
+      topology:
+        key: kubernetes.io/hostname
+        value: lke145386-213524-3b1cf3c10000
+    # master:
+    #   resources:
+    #     limits:
+    #       cpu: 800m
+    #       memory: 1.5Gi
+    #     requests:
+    #       cpu: 800m
+    #       memory: 1.5Gi
+    #   nodeSelectionPolicy: LabelSelector
+    #   topology:
+    #     key: kubernetes.io/hostname
+    #     value: lke145386-213524-446223e90000
+    ingest:
+      resources:
+        limits:
+          cpu: 800m
+          memory: 1.5Gi
+        requests:
+          cpu: 800m
+          memory: 1.5Gi

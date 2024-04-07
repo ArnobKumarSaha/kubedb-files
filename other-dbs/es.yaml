@@ -1,0 +1,49 @@
+apiVersion: kubedb.com/v1alpha2
+kind: Elasticsearch
+metadata:
+  name: es
+  namespace: demo
+spec:
+  topology:
+    data:
+      replicas: 2
+      storage:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      # nodeSelector:
+      #   kubernetes.io/hostname: lke145386-213524-26bcd9cd0000
+    ingest:
+      replicas: 1
+      storage:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      # nodeSelector:
+      #   kubernetes.io/hostname: lke145386-213524-2ed785900000
+    master:
+      replicas: 1
+      storage:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+      # nodeSelector:
+      #   kubernetes.io/hostname: lke145386-213524-31d66e5d0000
+  version: xpack-8.2.3
+  monitor:
+#   agent: prometheus.io/builtin
+    agent: prometheus.io/operator
+    prometheus:
+      serviceMonitor:
+        labels:
+          release: prometheus
+
+
+
+  # kubectl get pod -n kubedb -l 'app.kubernetes.io/name=kubedb-community' -o=jsonpath='{.items[0].status.containerStatuses[0].imageID}'

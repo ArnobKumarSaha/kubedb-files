@@ -1,0 +1,12 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: rm-tls
+  namespace: demo
+spec:
+  apply: IfReady
+  databaseRef:
+    name: sh7
+  tls:
+    remove: true
+  type: ReconfigureTLS

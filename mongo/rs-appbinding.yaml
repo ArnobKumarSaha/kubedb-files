@@ -1,0 +1,45 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: mg-rs
+    app.kubernetes.io/managed-by: kubedb.com
+    app.kubernetes.io/name: mongodbs.kubedb.com
+  name: mg-rs
+  namespace: demo
+  ownerReferences:
+  - apiVersion: kubedb.com/v1alpha2
+    blockOwnerDeletion: true
+    controller: true
+    kind: MongoDB
+    name: mg-rs
+    uid: a5b82f44-3f7e-4062-bf4c-bb28357ab8ac
+  resourceVersion: "15032"
+  uid: 54a8afb7-611c-42f4-b3c3-d13f48476d47
+spec:
+  appRef:
+    apiGroup: kubedb.com
+    kind: MongoDB
+    name: mg-rs
+    namespace: demo
+  clientConfig:
+    service:
+      name: mg-rs
+      port: 27017
+      scheme: mongodb
+  parameters:
+    apiVersion: config.kubedb.com/v1alpha1
+    kind: MongoConfiguration
+    replicaSets:
+      host-0: rs0/mg-rs-0.mg-rs-pods.demo.svc:27017,mg-rs-1.mg-rs-pods.demo.svc:27017,mg-rs-2.mg-rs-pods.demo.svc:27017
+    stash:
+      addon:
+        backupTask:
+          name: mongodb-backup-4.4.6
+        restoreTask:
+          name: mongodb-restore-4.4.6
+  secret:
+    name: mg-rs-auth
+  type: kubedb.com/mongodb
+  version: 4.4.6

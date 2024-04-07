@@ -1,0 +1,97 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: alone7
+  namespace: demo
+spec:
+  version: "7.0.5"
+  terminationPolicy: WipeOut
+  # storageEngine: inMemory
+  # storageType: Ephemeral
+  # ephemeralStorage:
+  #   sizeLimit: "900Mi"
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  # podTemplate:
+  #   spec:
+  #     initContainers:
+  #     - name: hello
+  #       image: alpine
+  #       args: ["/bin/sh", "-c", "echo hello-world"]
+  # podTemplate:
+  #   spec:
+  #     volumeMounts:
+  #     - name: users
+  #       mountPath: /users
+  #     volumes:
+  #     - name: users
+  #       secret:
+  #         secretName: user-info
+  # init:
+  #   script:
+  #     configMap:
+  #       name: mg-init-script
+  # sslMode: requireSSL
+  # tls:
+  #   issuerRef:
+  #     apiGroup: "cert-manager.io"
+  #     kind: ClusterIssuer
+  #     name: vault-issuer
+  # clusterAuthMode: x509
+  # configSecret:
+  #   name: mg-custom-config
+  monitor:
+    agent: prometheus.io/operator
+    prometheus:
+      serviceMonitor:
+        labels:
+          release: kube-prometheus-stack
+
+
+# > restoreSession
+# nil
+
+# > restore job
+# app.kubernetes.io/managed-by=kubestash.com,
+# kubestash.com/invoker-name=sample,
+# kubestash.com/invoker-namespace=demo
+
+# app.kubernetes.io/component=kubestash-restore,
+# app.kubernetes.io/managed-by=kubestash.com,
+# kubestash.com/invoker-name=sample,
+# kubestash.com/invoker-namespace=demo
+
+
+
+
+
+
+
+  # list.js: |
+  #   const fs = require('fs');
+  #   const { execSync } = require('child_process');
+
+  #   fs.readdir('/users', (err, files) => {
+  #     if (err) {
+  #       console.error('Error reading directory:', err);
+  #       return;
+  #     }
+
+  #     files.forEach(file => {
+  #       if (file.startsWith('user')) {
+  #         const filePath = `/users/${file}`;
+  #         console.log(`file = ${filePath}`)
+  #       }
+  #     });
+  #   });
+  #   db = db.getSiblingDB('demodb');
+  #   db.createCollection("dummy")
+
+
+  # sayedppqq/mongodb-init:6.0-v9_linux_amd64
+
+  

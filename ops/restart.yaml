@@ -1,0 +1,10 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: re
+  namespace: demo
+spec:
+  type: Restart
+  databaseRef:
+    name: std
+  apply: Always

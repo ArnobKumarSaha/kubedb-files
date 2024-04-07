@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: xx
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+      - name: ee
+        image: arnobkumarsaha/perm
+        args: ["/bin/sh", "-c", "sleep 30000"]
+        volumeMounts:
+        # - name: data
+        #   mountPath: /data
+        # - name: hello
+        #   mountPath: /hello
+        # - name: empty
+        #   mountPath: /empty
+        # - name: my-nfs-pvc
+        #   mountPath: /my-nfs-pvc
+        # - name: my-long-pvc
+        #   mountPath: /my-long-pvc
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+      securityContext:
+        fsGroup: 1000
+        # supplementalGroups: 
+        # - 1000
+      # tolerations:
+      # - effect: NoSchedule
+      #   key: nodepool
+      #   operator: Equal
+      #   value: medium
+      # nodeSelector:
+      #   cloud.google.com/gke-nodepool: medium
+      volumes:
+      - name: hello
+        nfs:
+          path: /exports
+          server: 10.128.103.11
+      - name: empty
+        emptyDir: {}
+      - name: my-nfs-pvc
+        persistentVolumeClaim: 
+          claimName: nfs-try
+      - name: my-long-pvc
+        persistentVolumeClaim: 
+          claimName: long-try
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: data
+  #   spec:
+  #     accessModes: [ "ReadOnlyMany" ]
+  #     # storageClassName: linode-block-storage-retain
+  #     resources:
+  #       requests:
+  #         storage: 1Gi

@@ -1,0 +1,16 @@
+form:
+  alert:
+    labels:
+      release: prometheus
+    groups:
+      database:
+        rules:
+          diskUsageHigh:
+            val: 30
+
+grafana:
+  url: "http://prometheus-grafana.monitoring.svc:80"
+  apikey: ""
+  jobName: repl6-stats 
+  enabled: true
+

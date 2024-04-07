@@ -1,0 +1,8 @@
+
+node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace="demo", pod="simple-0"}
+== 
+sum(irate(container_cpu_usage_seconds_total{namespace="demo", pod="simple-0"}[10m])) by (container)
+
+
+
+https://accounts.appscode.com/login/oauth/authorize_error?error=invalid_request&error_description=Unregistered+Redirect+URI&state=eyJyZWRpcmVjdFVSTCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDE2NzUvY2FsbGJhY2siLCJzaWQiOiI0Y2dwY3kiLCJjaWQiOiJxTjVWWHkifQ%3D%3D

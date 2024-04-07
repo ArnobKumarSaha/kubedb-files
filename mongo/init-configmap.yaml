@@ -1,0 +1,24 @@
+# cat ~/yamls/db/user1 
+# pass=pass1
+# db=demodb1
+# role=readWrite
+
+# kubectl create secret generic -n demo user-info --from-file=./yamls/db/user1 --from-file=./yamls/db/user2
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mg-init-script
+  namespace: demo
+data:
+  create.sh: |
+    for file in /users/*; do
+      if [ -f "$file" ]; then
+          user=$(basename "$file")
+          pwd=$(grep '^pass=' "$file" | cut -d'=' -f2)
+          db=$(grep '^db=' "$file" | cut -d'=' -f2)
+          role=$(grep '^role=' "$file" | cut -d'=' -f2)
+          mongo $db --eval "db.createUser({user: '$user', pwd: '$pwd', roles: [{ role: '$role', db: '$db' }]})"
+          mongo $db --eval 'db.createCollection("dummy")'
+      fi
+    done

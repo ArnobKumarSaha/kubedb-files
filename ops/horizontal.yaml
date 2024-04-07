@@ -1,0 +1,55 @@
+# apiVersion: ops.kubedb.com/v1alpha1
+# kind: MongoDBOpsRequest
+# metadata:
+#   name: hscale
+#   namespace: demo
+# spec:
+#   type: HorizontalScaling
+#   databaseRef:
+#     name: mg
+#   horizontalScaling:
+#     replicas: 3
+#     hidden:
+#       replicas: 2
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T05:40:33Z"
+#     message: MongoDB ops request is horizontally scaling database
+#     observedGeneration: 1
+#     reason: HorizontalScale
+#     status: "True"
+#     type: HorizontalScale
+#   - lastTransitionTime: "2023-08-02T05:41:08Z"
+#     message: Successfully Horizontally Scaled Up Hidden Replicas
+#     observedGeneration: 1
+#     reason: HorizontalScaleHiddenUp
+#     status: "True"
+#     type: HorizontalScaleHiddenUp
+#   - lastTransitionTime: "2023-08-02T05:41:53Z"
+#     message: Successfully Horizontally Scaled Up ReplicaSet
+#     observedGeneration: 1
+#     reason: HorizontalScaleReplicaSetUp
+#     status: "True"
+#     type: HorizontalScaleReplicaSetUp
+#   - lastTransitionTime: "2023-08-02T05:41:54Z"
+#     message: Successfully Horizontally Scaled MongoDB
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful
+
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: hscale
+  namespace: demo
+spec:
+  type: HorizontalScaling
+  databaseRef:
+    name: shard
+  horizontalScaling:
+    configServer:
+      replicas: 3
+  apply: IfReady

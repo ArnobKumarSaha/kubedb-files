@@ -1,0 +1,33 @@
+# kubectl create secret generic -n demo new-custom-config --from-file=./mongod.conf
+
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: up
+  namespace: demo
+spec:
+  type: VerticalScaling
+  databaseRef:
+    name: mg4
+  verticalScaling:
+    replicaSet:
+      # resources:
+      requests:
+        memory: "1.5Gi"
+        cpu: "1"
+      limits:
+        memory: "2Gi"
+        cpu: "2"
+  #     nodeSelectionPolicy: Taint  # Or LabelSelector
+  #     topology:
+  #       key: nodepool
+  #       value: medium
+  # configuration:
+  #   replicaSet:
+  #     configSecret:
+  #       name: new-custom-config
+  timeout: 10m
+  apply: IfReady
+
+
+  # https://hooks.slack.com/services/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

@@ -1,0 +1,16 @@
+cat > /tmp/load.sh
+
+#!/bin/bash
+
+# Specify the amount of memory to allocate in megabytes
+MEMORY_MB=1000
+
+echo "Allocating ${MEMORY_MB}MB of memory..."
+
+# Use dd to create a file with the specified size
+dd if=/dev/zero of=/tmp/memoryhog bs=1M count=${MEMORY_MB}
+
+# Create a loop to keep the script running and consuming memory
+while true; do
+  cat /tmp/memoryhog > /dev/null
+done

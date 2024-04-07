@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busy
+  namespace: demo
+spec:
+  containers:
+  - name: cont
+    image: busybox
+    imagePullPolicy: IfNotPresent
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - name: datadir
+      mountPath: /data/db
+      readOnly: true
+  volumes:
+  - name: datadir
+    persistentVolumeClaim:
+      claimName: datadir-simple-0

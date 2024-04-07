@@ -1,0 +1,85 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"ops.kubedb.com/v1alpha1","kind":"MongoDBOpsRequest","metadata":{"annotations":{},"name":"down2","namespace":"demo"},"spec":{"apply":"Always","databaseRef":{"name":"sh7"},"readinessCriteria":{"objectsCountDiffPercentage":10,"oplogMaxLagSeconds":20},"timeout":"5m","type":"VerticalScaling","verticalScaling":{"arbiter":{"resources":{"limits":{"cpu":"0.6","memory":"600Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"configServer":{"resources":{"limits":{"cpu":"0.6","memory":"600Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"mongos":{"resources":{"limits":{"cpu":"0.6","memory":"600Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}},"shard":{"resources":{"limits":{"cpu":"0.6","memory":"600Mi"},"requests":{"cpu":"0.5","memory":"500Mi"}}}}}}
+  creationTimestamp: "2024-01-11T11:49:47Z"
+  generation: 1
+  name: down2
+  namespace: demo
+  resourceVersion: "2956707"
+  uid: e98f49df-226e-40c5-af88-6c2898bb6a04
+spec:
+  apply: Always
+  databaseRef:
+    name: sh7
+  readinessCriteria:
+    objectsCountDiffPercentage: 10
+    oplogMaxLagSeconds: 20
+  timeout: 5m
+  type: VerticalScaling
+  verticalScaling:
+    arbiter:
+      resources:
+        limits:
+          cpu: "0.6"
+          memory: 600Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    configServer:
+      resources:
+        limits:
+          cpu: "0.6"
+          memory: 600Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    mongos:
+      resources:
+        limits:
+          cpu: "0.6"
+          memory: 600Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+    shard:
+      resources:
+        limits:
+          cpu: "0.6"
+          memory: 600Mi
+        requests:
+          cpu: "0.5"
+          memory: 500Mi
+status:
+  conditions:
+  - lastTransitionTime: "2024-01-11T11:49:47Z"
+    message: MongoDB ops request is vertically scaling database
+    observedGeneration: 1
+    reason: VerticalScale
+    status: "True"
+    type: VerticalScale
+  - lastTransitionTime: "2024-01-11T11:52:21Z"
+    message: Successfully Vertically Scaled ConfigServer Resources
+    observedGeneration: 1
+    reason: VerticalScaleConfigServer
+    status: "True"
+    type: VerticalScaleConfigServer
+  - lastTransitionTime: "2024-01-11T11:56:12Z"
+    message: Successfully Vertically Scaled Mongos Resources
+    observedGeneration: 1
+    reason: VerticalScaleMongos
+    status: "True"
+    type: VerticalScaleMongos
+  - lastTransitionTime: "2024-01-11T12:32:30Z"
+    message: 'server selection error: server selection timeout, current topology:
+      { Type: Single, Servers: [{ Addr: sh7-shard0-1.sh7-shard0-pods.demo.svc:27017,
+      Type: Unknown, Last error: connection() error occurred during connection handshake:
+      dial tcp 10.2.2.106:27017: connect: connection refused }, ] }'
+    observedGeneration: 1
+    reason: Failed
+    status: "False"
+    type: VerticalScaleShard
+  observedGeneration: 1
+  phase: Failed

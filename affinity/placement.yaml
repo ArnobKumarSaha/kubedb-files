@@ -1,0 +1,87 @@
+# apiVersion: apps.k8s.appscode.com/v1
+# kind: PlacementPolicy
+# metadata:
+#   name: one-on-ondemand
+# spec:
+#   zoneSpreadConstraint:
+#     maxSkew: 1
+#     whenUnsatisfiable: DoNotSchedule
+#   nodeSpreadConstraint:
+#     maxSkew: 1
+#     whenUnsatisfiable: ScheduleAnyway
+#   nodeAffinity:
+#     - topologyKey: topology.kubernetes.io/zone
+#       whenUnsatisfiable: DoNotSchedule
+#       domains:
+#         - values:
+#             - us-west-2d
+#             - us-west-2b
+#             - us-west-2c
+#           replicas: "" # empty means rest of the replicas
+#       weight: 40
+#     - topologyKey: karpenter.sh/capacity-type
+#       whenUnsatisfiable: DoNotSchedule
+#       domains:
+#         - values: ["on-demand"]
+#           replicas: "1"
+#         - values: ["spot"]
+#           replicas: "" # empty means rest of the replicas
+#       weight: 70
+
+# apiVersion: apps.k8s.appscode.com/v1
+# kind: PlacementPolicy
+# metadata:
+#   name: majority-on-spot
+# spec:
+#   zoneSpreadConstraint:
+#     maxSkew: 1
+#     whenUnsatisfiable: DoNotSchedule
+#   nodeSpreadConstraint:
+#     maxSkew: 1
+#     whenUnsatisfiable: ScheduleAnyway
+#   nodeAffinity:
+#     - topologyKey: topology.kubernetes.io/zone
+#       whenUnsatisfiable: DoNotSchedule
+#       domains:
+#         - values:
+#             - us-west-2d
+#             - us-west-2b
+#             - us-west-2c
+#           replicas: "" # empty means rest of the replicas
+#       weight: 40
+#     - topologyKey: karpenter.sh/capacity-type
+#       whenUnsatisfiable: DoNotSchedule
+#       domains:
+#         - values: ["spot"]
+#           replicas: "obj.spec.replicas/2+1"
+#         - values: ["on-demand"]
+#           replicas: "" # empty means rest of the replicas
+#       weight: 70
+
+apiVersion: apps.k8s.appscode.com/v1
+kind: PlacementPolicy
+metadata:
+  name: default
+spec:
+  zoneSpreadConstraint:
+    maxSkew: 1
+    whenUnsatisfiable: DoNotSchedule
+  nodeSpreadConstraint:
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway
+  nodeAffinity:
+    - topologyKey: topology.kubernetes.io/zone
+      whenUnsatisfiable: DoNotSchedule
+      domains:
+        - values:
+            - us-west-2b
+            - us-west-2c
+            - us-west-2d
+          replicas: "" # empty means rest of the replicas
+      weight: 40
+    - topologyKey: karpenter.sh/capacity-type
+      whenUnsatisfiable: DoNotSchedule
+      domains:
+        - values: ["spot"]
+          replicas: "" # empty means rest of the replicas
+      weight: 70

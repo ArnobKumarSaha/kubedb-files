@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: block
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Block
+  storageClassName: "linode-block-storage"
+  resources:
+    requests:
+      storage: 1Gi
+
+# mkfs.ext4 /dev/block && mkdir /data & mount /dev/block /data
+# ls -l /dev | grep block
+# blockdev --setra 32 /dev/sda
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: abc
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - apk add util-linux && lsblk && echo "222" && lsblk -f && echo "333" && lsblk -a 
+    image: alpine:latest
+    imagePullPolicy: IfNotPresent
+    name: preparer
+    securityContext:
+      privileged: true
+    volumeDevices:
+    - devicePath: /dev/newblock
+      name: blockpvc
+    volumeMounts:
+    - mountPath: /host
+      name: host-root
+  # containers:
+  # - command:
+  #   - sh
+  #   - -c
+  #   - fs=$(df -h | grep -E '\s\/$' | cut -d' ' -f1) && blockdev --setra 32 "$fs"
+  #   image: tianon/toybox:0.8.4
+  #   imagePullPolicy: IfNotPresent
+  #   name: preparer
+  #   securityContext:
+  #     privileged: true
+  #   volumeMounts:
+  #   - mountPath: /host
+  #     name: host-root
+  # initContainers:
+  # - name: setup
+  #   image: busybox
+  #   command: ["sh", "-c", "ls /host/dev; blockdev --setra 32 /host/dev/sda"]
+  #   volumeMounts:
+  #   - mountPath: /host
+  #     name: host-root
+  securityContext: {}
+  volumes:
+  - name: blockpvc
+    persistentVolumeClaim:
+      claimName: block
+  - hostPath:
+      path: /
+      type: ""
+    name: host-root

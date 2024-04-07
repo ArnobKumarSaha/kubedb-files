@@ -1,0 +1,134 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: up-mem
+  namespace: demo
+spec:
+  type: VerticalScaling
+  databaseRef:
+    name: sh7
+  verticalScaling:
+    shard:
+      resources:
+        requests:
+          memory: "500Mi"
+          cpu: "0.5"
+        limits:
+          memory: "900Mi"
+          cpu: "0.9"
+    mongos:
+      resources:
+        requests:
+          memory: "500Mi"
+          cpu: "0.5"
+        limits:
+          memory: "900Mi"
+          cpu: "0.9"
+    arbiter:
+      resources:
+        requests:
+          memory: "500Mi"
+          cpu: "0.5"
+        limits:
+          memory: "900Mi"
+          cpu: "0.9"
+    configServer:
+      resources:
+        requests:
+          memory: "500Mi"
+          cpu: "0.5"
+        limits:
+          memory: "900Mi"
+          cpu: "0.9"
+      # nodeSelectionPolicy: Taint
+      # topology:
+      #   key: nodepool # cloud.google.com/gke-nodepool
+      #   value: medium
+      # nodeSelectionPolicy: LabelSelector
+      # topology:
+      #   key: kubernetes.io/hostname
+      #   value: lke145386-213524-3b1cf3c10000
+    # arbiter:
+    #   resources:
+    #     requests:
+    #       memory: "1100Mi"
+    #       cpu: "0.7"
+    #     limits:
+    #       memory: "1100Mi"
+    #       cpu: "0.8"
+    #   # nodeSelectionPolicy: Taint
+    #   # topology:
+    #   #   key: nodepool # cloud.google.com/gke-nodepool
+    #   #   value: medium
+    #   nodeSelectionPolicy: LabelSelector
+    #   topology:
+    #     key: kubernetes.io/hostname
+    #     value: lke145386-213524-3b1cf3c10000
+    # shard:
+    #   requests:
+    #     memory: "200Mi"
+    #     cpu: "0.2"
+    #   limits:
+    #     memory: "300Mi"
+    #     cpu: "0.3"
+    # exporter:
+    #   resources:
+    #     requests:
+    #       memory: "1000Mi"
+    #       cpu: "0.6"
+    #     limits:
+    #       memory: "1000Mi"
+    #       cpu: "0.6"
+    # arbiter:
+    #   requests:
+    #     memory: "1000Mi"
+    #     cpu: "0.6"
+    #   limits:
+    #     memory: "1000Mi"
+    #     cpu: "0.6"
+    # hidden:
+    #   requests:
+    #     memory: "1200Mi"
+    #     cpu: "0.6"
+    #   limits:
+    #     memory: "1200Mi"
+    #     cpu: "0.6"
+  readinessCriteria:
+    oplogMaxLagSeconds: 20
+    objectsCountDiffPercentage: 10
+  timeout: 5m
+  apply: Always
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T04:23:51Z"
+#     message: MongoDB ops request is vertically scaling database
+#     observedGeneration: 1
+#     reason: VerticalScale
+#     status: "True"
+#     type: VerticalScale
+#   - lastTransitionTime: "2023-08-02T04:24:58Z"
+#     message: Successfully Vertically Scaled Replicaset Resources
+#     observedGeneration: 1
+#     reason: VerticalScaleReplicaSet
+#     status: "True"
+#     type: VerticalScaleReplicaSet
+#   - lastTransitionTime: "2023-08-02T04:25:59Z"
+#     message: Successfully Vertically Scaled arbiter Resources
+#     observedGeneration: 1
+#     reason: VerticalScaleArbiter
+#     status: "True"
+#     type: VerticalScaleArbiter
+#   - lastTransitionTime: "2023-08-02T04:26:40Z"
+#     message: Successfully Vertically Scaled Hidden Resources
+#     observedGeneration: 1
+#     reason: VerticalScaleHidden
+#     status: "True"
+#     type: VerticalScaleHidden
+#   - lastTransitionTime: "2023-08-02T04:26:41Z"
+#     message: Successfully Vertically Scaled Database
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful

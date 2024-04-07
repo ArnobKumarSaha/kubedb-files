@@ -1,0 +1,17 @@
+apiVersion: kubedb.com/v1alpha2
+kind: Postgres
+metadata:
+  name: pg
+  namespace: demo
+spec:
+  version: "15.5"
+  replicas: 3
+  storageType: Durable
+  storage:
+    # storageClassName: "longhorn"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  terminationPolicy: Delete

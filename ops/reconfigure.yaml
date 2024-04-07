@@ -1,0 +1,52 @@
+# cat mongod.conf
+# net:
+#    maxIncomingConnections: 20000
+# kubectl create secret generic -n demo new-custom-config --from-file=./mongod.conf 
+
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: reconfigure
+  namespace: demo
+spec:
+  type: Reconfigure
+  databaseRef:
+    name: mg4
+  configuration:
+    replicaSet:
+      configSecret:
+        name: new-custom-config
+  timeout: 5m
+  apply: IfReady
+# status:
+#   conditions:
+#   - lastTransitionTime: "2023-08-02T04:31:23Z"
+#     message: MongoDB ops request is reconfiguring database
+#     observedGeneration: 1
+#     reason: Reconfigure
+#     status: "True"
+#     type: Reconfigure
+#   - lastTransitionTime: "2023-08-02T04:32:24Z"
+#     message: Successfully Reconfigured MongoDB
+#     observedGeneration: 1
+#     reason: ReconfigureReplicaset
+#     status: "True"
+#     type: ReconfigureReplicaset
+#   - lastTransitionTime: "2023-08-02T04:33:00Z"
+#     message: Successfully Reconfigured MongoDB
+#     observedGeneration: 1
+#     reason: ReconfigureArbiter
+#     status: "True"
+#     type: ReconfigureArbiter
+#   - lastTransitionTime: "2023-08-02T04:33:01Z"
+#     observedGeneration: 1
+#     status: "True"
+#     type: ""
+#   - lastTransitionTime: "2023-08-02T04:33:03Z"
+#     message: Successfully completed the modification process.
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful

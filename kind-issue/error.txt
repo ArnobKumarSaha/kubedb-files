@@ -1,0 +1,15 @@
+runner@acdc-3-3:~/runner/_work/mongodb/mongodb$ make push-to-kind 
+making bin/linux_amd64/mg-operator
+
+Loading docker image into kind cluster....
+Image: "ghcr.io/kubedb/mg-operator:v0.34.0-beta.1-1-gbb0716221_linux_amd64" with ID "sha256:45d75e256e6151910dd36136f9cdda2fbb1b460b2daa27f110da13656791a61e" not yet present on node "kind-control-plane", loading...
+ERROR: failed to load image: command "docker exec --privileged -i kind-control-plane ctr --namespace=k8s.io images import --all-platforms --digests --snapshotter=overlayfs -" failed with error: exit status 1
+Command Output: unpacking ghcr.io/kubedb/mg-operator:v0.34.0-beta.1-1-gbb0716221_linux_amd64 (sha256:f391c20ff102a8af4bef5bde49b73842c3b88dd28ef2c4bef940e3fba8faf879)...time="2024-01-23T09:16:10Z" level=info msg="apply failure, attempting cleanup" error="wrong diff id calculated on extraction \"sha256:10e9b9e72178b3e5fe8ff566a61eefb03ad585f5eae5cc0f2b08dbe3c874cecb\"" key="extract-734689960-k6B9 sha256:6f4d4102c049625bda5ffcd0e671ae65aea1d600735d3dc3585309f7d99cc083"
+ctr: wrong diff id calculated on extraction "sha256:10e9b9e72178b3e5fe8ff566a61eefb03ad585f5eae5cc0f2b08dbe3c874cecb"
+make: *** [Makefile:512: push-to-kind] Error 1
+
+
+
+
+
+

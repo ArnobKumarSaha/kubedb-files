@@ -1,0 +1,43 @@
+
+nohup mongod --bind_ip localhost --port 8081 --replSet repl --dbpath /home/arnob/data/rs1 &
+nohup mongod --bind_ip localhost --port 8082 --replSet repl --dbpath /home/arnob/data/rs2 &
+nohup mongod --bind_ip localhost --port 8083 --replSet repl --dbpath /home/arnob/data/rs3 &
+
+
+rs.initiate(
+   {
+      _id: "repl",
+      version: 1,
+      members: [
+         { _id: 0, host : "localhost:8081" },
+         { _id: 1, host : "localhost:8082" },
+         { _id: 2, host : "localhost:8083" }
+      ]
+   }
+)
+
+rs.status()
+
+nohup mongod --bind_ip localhost --port 8084 --replSet repl --dbpath /home/arnob/data/arb1 &
+
+# to avoid the below error
+# MongoServerError: Reconfig attempted to install a config that would change the implicit default write concern. Use the setDefaultRWConcern command to set a cluster-wide write concern and try the reconfig again.
+# https://dba.stackexchange.com/questions/306002/add-an-arbiter-to-mongodb-replicaset-failed
+
+
+db.adminCommand({
+    "setDefaultRWConcern" : 1,
+    "defaultWriteConcern" : {
+        "w" : 1
+    }
+})
+
+rs.addArb("localhost:8084")
+
+-----------------------------
+
+docker run --network host --name rs1 -d mongo:5.0.23 --bind_ip=::,0.0.0.0 --replSet=repl --port=8081
+docker run --network host --name rs2 -d mongo:5.0.23 --bind_ip=::,0.0.0.0 --replSet=repl --port=8082
+docker run --network host --name rs3 -d mongo:5.0.23 --bind_ip=::,0.0.0.0 --replSet=repl --port=8083
+
+docker run --network host --name arb1 -d mongo:5.0.23 --bind_ip=::,0.0.0.0 --replSet=repl --port=8084

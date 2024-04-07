@@ -1,0 +1,79 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: mg6
+  namespace: demo
+spec:
+  version: 6.0.12
+  # version: 7.0.5
+  storageType: Durable
+  shardTopology:
+    configServer:
+      storage:
+        resources:
+          requests:
+            storage: 1Gi
+      replicas: 3
+      # podTemplate:
+      #   spec:
+      #     resources:
+      #       requests:
+      #         "cpu": 0.5
+      #         "memory": 500Mi
+    mongos:
+      replicas: 2
+    shard:
+      storage:
+        # storageClassName: longhorn
+        resources:
+          requests:
+            storage: 1Gi
+      replicas: 3
+      shards: 2
+      # podTemplate:
+      #   spec:
+      #     resources:
+      #       requests:
+      #         "cpu": 1.5
+      #         "memory": 2500Mi
+      #       limits:
+      #         "cpu": 1.8
+      #         "memory": 3Gi
+      storage:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+  # hidden:
+  #   podTemplate: {}
+  #   replicas: 1
+  #   storage:
+  #     accessModes:
+  #       - ReadWriteOnce
+  #     resources:
+  #       requests:
+  #         storage: 1Gi
+  # arbiter:
+  #   podTemplate: {}
+  terminationPolicy: WipeOut
+  # sslMode: requireSSL
+  # tls:
+  #   issuerRef:
+  #     apiGroup: "cert-manager.io"
+  #     kind: Issuer
+  #     name: mongo-ca-issuer
+  # clusterAuthMode: x509
+  # monitor:
+  #   agent: prometheus.io/operator
+  #   prometheus:
+  #     exporter:
+  #       port: 1024
+  #     serviceMonitor:
+  #       labels:
+  #         release: prometheus
+  #       interval: 10s
+  # monitor:
+  #   agent: prometheus.io/builtin
+
+

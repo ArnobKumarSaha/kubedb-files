@@ -1,0 +1,25 @@
+apiVersion: apps.k8s.appscode.com/v1
+kind: PetSet
+metadata:
+  name: pp
+spec:
+  podPlacementPolicy:
+    name: default
+  replicas: 3
+  selector:
+    matchLabels:
+      app: pet
+  template:
+    metadata:
+      labels:
+        app: pet
+    spec:
+      containers:
+      - name: nginx
+        image: registry.k8s.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        resources:
+          requests:
+            "memory": "400Mi"

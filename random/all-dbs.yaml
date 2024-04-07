@@ -1,0 +1,130 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: one
+  namespace: demo
+spec:
+  version: "4.0.11-v1"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  podTemplate:
+    spec:
+      resources:
+        requests:
+          "cpu": "500m"
+          "memory": 500Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  configSecret:
+    name: mg-configuration
+---
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: two
+  namespace: demo
+spec:
+  version: "4.0.11-v1"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  podTemplate:
+    spec:
+      resources:
+        requests:
+          "cpu": "500m"
+          "memory": 500Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  configSecret:
+    name: mg-configuration
+---
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: three
+  namespace: demo
+spec:
+  version: "4.0.11-v1"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  podTemplate:
+    spec:
+      resources:
+        requests:
+          "cpu": "700m"
+          "memory": 700Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  configSecret:
+    name: mg-configuration
+---
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: four
+  namespace: demo
+spec:
+  version: "4.0.11-v1"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  podTemplate:
+    spec:
+      resources:
+        requests:
+          "cpu": "500m"
+          "memory": 500Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  configSecret:
+    name: mg-configuration
+---
+apiVersion: kubedb.com/v1alpha2
+kind: MongoDB
+metadata:
+  name: five
+  namespace: demo
+spec:
+  version: "4.0.11-v1"
+  terminationPolicy: WipeOut
+  replicas: 3
+  replicaSet:
+    name: "rs1"
+  podTemplate:
+    spec:
+      resources:
+        requests:
+          "cpu": "500m"
+          "memory": 500Mi
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  configSecret:
+    name: mg-configuration
+---
