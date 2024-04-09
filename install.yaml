@@ -22,6 +22,17 @@ helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
     --set kubedb-catalog.skipDeprecated=false \
     --set-file global.license=/home/arnob/yamls/license/kind.txt
 
+
+helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
+  --version v2024.3.16 \
+  --namespace kubedb --create-namespace \
+  --set kubedb-catalog.skipDeprecated=false \
+  --set kubedb-catalog.enableVersions.MySQL[0]=8.0.27 \
+  --set kubedb-catalog.enableVersions.Postgres[0]=11.11
+  --set-file global.license=/home/arnob/go/src/github.com/Arnobkumarsaha/kubedb-files/license/kind.txt \
+  --wait --burst-limit=10000 --debug
+
+
 kubectl patch deploy -n kubedb kubedb-kubedb-ops-manager -p '{"spec":{"template":{"spec":{"containers":[{"name":"operator","image":"arnobkumarsaha/kubedb-ops-manager:mg-user_linux_amd64"}]}}}}'
 
 kubectl patch mgversion 4.0.11-v1 --type="merge" --patch='{"spec": {"deprecated": false}}'

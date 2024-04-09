@@ -25,9 +25,21 @@ func init() {
 
 func getRESTConfig() *rest.Config {
 	kubeConfig := os.Getenv("KUBECONFIG")
-	config, err := clientcmd.BuildConfigFromFlags("", kubeConfig)
-	if err != nil {
-		panic(err.Error())
+	var (
+		config *rest.Config
+		err    error
+	)
+
+	if kubeConfig == "" {
+		config, err = rest.InClusterConfig()
+		if err != nil {
+			panic(err.Error())
+		}
+	} else {
+		config, err = clientcmd.BuildConfigFromFlags("", kubeConfig)
+		if err != nil {
+			panic(err.Error())
+		}
 	}
 	return config
 }

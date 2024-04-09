@@ -26,22 +26,32 @@ func main() {
 		klog.Fatal(err)
 	}
 
+	klog.Infof("MongoDB found %v \n", mongodb.Name)
+
 	tunnel, err := TunnelToDBService(config)
 	if err != nil {
+		klog.Fatal(err)
 		return
 	}
+
+	klog.Infof("Tunnel created for svc at %v \n", tunnel.Local)
 
 	err = getPrimaryAndSecondary(tunnel)
 	if err != nil {
 		return
 	}
 
+	klog.Infof("Primary and Secondary found! %v %v \n", primaryPod, secondaryPod)
+
 	tunnelPod, err := TunnelToDBPod(config, secondaryPod)
 	if err != nil {
 		return
 	}
 
+	klog.Infof("Tunnel created for pod %v at %v \n", secondaryPod, tunnel.Local)
+
 	start := time.Now()
+	klog.Infof("starts at %v \n", start)
 	pc, sc := connectToMongo(tunnel, tunnelPod)
 	defer func() {
 		if err := pc.Disconnect(context.Background()); err != nil {
