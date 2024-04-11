@@ -67,7 +67,12 @@ mongosh "mongodb://139-162-26-203.ip.linodeusercontent.com:27017/admin?directCon
 
 
 
-
+db.runCommand(
+   {
+     dbStats: 1,
+     scale: 1048576
+   }
+)
 
 for a in $(kubectl get pods -n demo | grep -v NAME | awk '{print $1}') ; do echo " "; echo "== ${a} Pd Volume Size =="; kubectl -n demo exec -it ${a} -- df -Th | egrep 'Type|/data/db' ; done
 

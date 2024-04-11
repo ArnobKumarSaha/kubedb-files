@@ -1,15 +1,15 @@
 // sample persons
 var persons = {
-     "id01" : { "name": "hoge", "act_num": 50000}
-     ,"id02" : { "name": "piyo", "act_num": 100000} 
-     ,"id03" : { "name": "huga", "act_num": 50000} 
-     ,"id04" : { "name": "mone", "act_num": 100000}
-     ,"id05" : { "name": "tako", "act_num": 50000}
-     ,"id06" : { "name": "nasu", "act_num": 100000}
-     ,"id07" : { "name": "poke", "act_num": 50000}
-     ,"id08" : { "name": "paca", "act_num": 100000}
-     ,"id09" : { "name": "pipi", "act_num": 50000}
-     ,"id10" : { "name": "zizi", "act_num": 100000}
+     "id01" : { "name": "hoge", "act_num": 500000}
+     ,"id02" : { "name": "piyo", "act_num": 1000000}
+     ,"id03" : { "name": "huga", "act_num": 500000}
+     ,"id04" : { "name": "mone", "act_num": 1000000}
+     ,"id05" : { "name": "tako", "act_num": 500000}
+     ,"id06" : { "name": "nasu", "act_num": 1000000}
+     ,"id07" : { "name": "poke", "act_num": 500000}
+     ,"id08" : { "name": "paca", "act_num": 1000000}
+     ,"id09" : { "name": "pipi", "act_num": 500000}
+     ,"id10" : { "name": "zizi", "act_num": 1000000}
     };
     
     // sample host names

@@ -1,7 +1,7 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MongoDB
 metadata:
-  name: mg5
+  name: source
   namespace: demo
 spec:
   # allowedSchemas:
@@ -14,7 +14,7 @@ spec:
   #     matchLabels:
   #       "schema.kubedb.com": "mongo"
   # version: "4.0.11-v1"
-  version: "5.0.23"
+  version: "6.0.12"
   terminationPolicy: WipeOut
   replicas: 3
   replicaSet:
@@ -32,8 +32,8 @@ spec:
       #   effect: NoSchedule
       resources:
         requests:
-          "cpu": "700m"
-          "memory": 700Mi
+          "cpu": "1"
+          "memory": 3Gi
   # coordinator:
     # securityContext:
   #     allowPrivilegeEscalation: false

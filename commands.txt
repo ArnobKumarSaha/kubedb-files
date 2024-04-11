@@ -1,0 +1,10 @@
+
+kubectl get features -o json | jq -r '.items[] | select(.spec.chart.createNamespace == true) | .metadata.name'
+
+db.runCommand( { dbStats: 1, scale: 1048576 } )
+db.runCommand( { collStats: "one", scale: 1048576 } )
+# 1048576 = 1024 * 1024
+
+db.one.createIndex({"key":1})
+
+

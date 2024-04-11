@@ -7,7 +7,7 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MongoDB
 metadata:
-  name: dest
+  name: source
   namespace: demo
 spec:
   version: "6.0.12"
@@ -16,16 +16,16 @@ spec:
   replicaSet:
     name: "rs1"
   authSecret:
-    name: dest-auth
+    name: source-auth
     externallyManaged: true
   podTemplate:
     spec:
-      nodeSelector:
-        node.kubernetes.io/instance-type: g6-standard-2
+#      nodeSelector:
+#        node.kubernetes.io/instance-type: g6-standard-2
       resources:
         requests:
-          "cpu": "1"
-          "memory": 2Gi
+          "cpu": "2"
+          "memory": 4Gi
   storage:
     accessModes:
     - ReadWriteOnce
