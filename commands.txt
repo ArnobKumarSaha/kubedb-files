@@ -8,3 +8,39 @@ db.runCommand( { collStats: "one", scale: 1048576 } )
 db.one.createIndex({"key":1})
 
 
+
+db.one.stats().wiredTiger.cache['bytes currently in the cache']
+
+db.getCollectionNames().map(name => ({totalIndexSize: db.getCollection(name).stats().totalIndexSize, name: name}))
+
+
+
+
+https://www.mongodb.com/community/forums/t/working-set-must-fit-in-memory/3287/3
+This says, working-set + indexes doesn't have to fit in the memory.
+
+    https://www.mongodb.com/community/forums/t/working-set-should-be-sized-to-fit-into-ram-or-wiredtiger-internal-cache/140684/2
+And this recommends to set 20% of the total data size as RAM.
+
+Dataloop had 1.65 Ti (=1690Gi) data. 20% of that is 338Gi.
+
+{
+  ns: 'cc.one',
+  count: 5500000,
+  size: 241,
+  avgObjSize: 46,
+  storageSize: 152,
+  wiredTiger: {
+      cache: {
+        'bytes currently in the cache': 8699527,
+        'bytes dirty in the cache cumulative': 6824354,
+        'bytes read into cache': 2243540,
+        'bytes written from cache': 378867011,
+      }
+  },
+  nindexes: 1,
+  totalIndexSize: 150,
+  totalSize: 303,
+  indexSizes: { _id_: 150 },
+  scaleFactor: 1048576,
+}
