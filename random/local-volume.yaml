@@ -1,0 +1,55 @@
+# Note that, The storage class should be of volumeBindingMode: WaitForFirstConsumer
+# Don't forget to create /tmp/data directory by execing into the node before.
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-util
+spec:
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  local:
+    path: /tmp/data
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - kind-control-plane
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mongo-util
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 500Mi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-util
+  namespace: demo
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ['sh', '-c', 'echo "The local volume is mounted!" > /mnt/test.txt && sleep 3600']
+      volumeMounts:
+        - name: local-storage
+          mountPath: /mnt
+  volumes:
+    - name: local-storage
+      persistentVolumeClaim:
+        claimName: mongo-util
