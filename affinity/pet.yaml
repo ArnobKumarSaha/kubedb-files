@@ -2,10 +2,11 @@ apiVersion: apps.k8s.appscode.com/v1
 kind: PetSet
 metadata:
   name: pp
+  namespace: demo
 spec:
-  podPlacementPolicy:
-    name: default
-  replicas: 3
+  # podPlacementPolicy:
+  #   name: default
+  replicas: 1
   selector:
     matchLabels:
       app: pet

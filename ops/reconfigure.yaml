@@ -11,11 +11,17 @@ metadata:
 spec:
   type: Reconfigure
   databaseRef:
-    name: mg4
+    name: repl6
+  # configuration:
+  #   replicaSet:
+  #     configSecret:
+  #       name: new-custom-config
   configuration:
     replicaSet:
-      configSecret:
-        name: new-custom-config
+      applyConfig:
+        mongod.conf: |-
+          net:
+            maxIncomingConnections: 30000
   timeout: 5m
   apply: IfReady
 # status:
@@ -50,3 +56,9 @@ spec:
 #     type: Successful
 #   observedGeneration: 1
 #   phase: Successful
+
+
+4.4.26 -> 4.4.29 (feb28)
+5.0.23 -> 5.0.26 (mar26)
+6.0.12 -> 6.0.15 (apr18)
+7.0.5  -> 7.0.8  (apr3)

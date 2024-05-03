@@ -32,8 +32,8 @@ spec:
       #   effect: NoSchedule
       resources:
         requests:
-          "cpu": "1"
-          "memory": 3Gi
+          "cpu": "700m"
+          "memory": 1Gi
   # coordinator:
     # securityContext:
   #     allowPrivilegeEscalation: false
@@ -89,20 +89,20 @@ spec:
   #           "memory": 400Mi
   # configSecret:
   #   name: mg-configuration
-  # sslMode: requireSSL
-  # tls:
-  #   issuerRef:
-  #     apiGroup: "cert-manager.io"
-  #     kind: Issuer
-  #     name: mongo-ca-issuer
-  # clusterAuthMode: x509
+  sslMode: requireSSL
+  tls:
+    issuerRef:
+      apiGroup: "cert-manager.io"
+      kind: Issuer
+      name: mongo-ca-issuer
+  clusterAuthMode: x509
   monitor:
     # agent: prometheus.io/builtin
     agent: prometheus.io/operator
     prometheus:
       serviceMonitor:
         labels:
-          release: prometheus
+          release: kube-prometheus-stack
   #     exporter:
   #       args: ["--compatible-mode"]
   #       securityContext:

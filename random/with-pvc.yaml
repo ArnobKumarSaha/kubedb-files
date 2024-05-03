@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: xx
+  name: yy
   namespace: demo
 spec:
   replicas: 1
@@ -18,10 +18,10 @@ spec:
         image: arnobkumarsaha/perm
         args: ["/bin/sh", "-c", "sleep 30000"]
         volumeMounts:
-        # - name: data
-        #   mountPath: /data
-        # - name: hello
-        #   mountPath: /hello
+        - name: data
+          mountPath: /data
+        - name: hello
+          mountPath: /hello
         # - name: empty
         #   mountPath: /empty
         # - name: my-nfs-pvc
@@ -43,24 +43,27 @@ spec:
       # nodeSelector:
       #   cloud.google.com/gke-nodepool: medium
       volumes:
-      - name: hello
-        nfs:
-          path: /exports
-          server: 10.128.103.11
-      - name: empty
-        emptyDir: {}
-      - name: my-nfs-pvc
-        persistentVolumeClaim: 
-          claimName: nfs-try
-      - name: my-long-pvc
-        persistentVolumeClaim: 
-          claimName: long-try
-  # volumeClaimTemplates:
-  # - metadata:
-  #     name: data
-  #   spec:
-  #     accessModes: [ "ReadOnlyMany" ]
-  #     # storageClassName: linode-block-storage-retain
-  #     resources:
-  #       requests:
-  #         storage: 1Gi
+      - name: data
+        persistentVolumeClaim:
+          claimName: test-pvc
+      # - name: hello
+      #   nfs:
+      #     path: /exports
+      #     server: 10.128.103.11
+      # - name: empty
+      #   emptyDir: {}
+      # - name: my-nfs-pvc
+      #   persistentVolumeClaim: 
+      #     claimName: nfs-try
+      # - name: my-long-pvc
+      #   persistentVolumeClaim: 
+      #     claimName: long-try
+  volumeClaimTemplates:
+  - metadata:
+      name: hello
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: linode-block-storage-retain
+      resources:
+        requests:
+          storage: 1Gi

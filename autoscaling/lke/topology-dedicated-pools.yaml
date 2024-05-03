@@ -1,0 +1,20 @@
+apiVersion: node.k8s.appscode.com/v1alpha1
+kind: NodeTopology
+metadata:
+  name: lke-pools
+spec:
+  nodeSelectionPolicy: LabelSelector
+  topologyKey: "node.kubernetes.io/instance-type"
+  nodeGroups: # capacities here are actually slightly less than the allocatable resources.
+  - topologyValue: g6-dedicated-2
+    allocatable:
+      cpu: "2"
+      memory: 3923752Ki # 3.75Gi
+  - topologyValue: g6-dedicated-4
+    allocatable:
+      cpu: "4"
+      memory: 8045888Ki # 7.7Gi
+  - topologyValue: g6-dedicated-8
+    allocatable:
+      cpu: "8"
+      memory: 16290168Ki # 5.59

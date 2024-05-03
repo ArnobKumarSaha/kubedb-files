@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   databaseRef:
-    name: sample
+    name: source
   opsRequestOptions:
     timeout: 10m
     apply: IfReady
@@ -15,10 +15,10 @@ spec:
       podLifeTimeThreshold: 6m
       resourceDiffPercentage: 30
       minAllowed:
-        cpu: "450m"
-        memory: 855Mi
+        cpu: "900m" # "450m"
+        memory: "1765688Ki" # 855Mi
       maxAllowed:
-        cpu: 6
+        cpu: 8 # 6
         memory: 16Gi
       controlledResources: ["cpu", "memory"]
       containerControlledValues: "RequestsAndLimits"
