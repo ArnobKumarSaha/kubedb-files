@@ -1,7 +1,7 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MongoDB
 metadata:
-  name: source
+  name: repl6
   namespace: demo
 spec:
   # allowedSchemas:
@@ -16,24 +16,50 @@ spec:
   # version: "4.0.11-v1"
   version: "6.0.12"
   terminationPolicy: WipeOut
-  replicas: 3
+  replicas: 2
   replicaSet:
     name: "rs1"
   # authSecret:
   #   name: source-auth
   #   externallyManaged: true
-  podTemplate:
-    spec:
+  # podTemplate:
+  #   spec:
       # nodeSelector:
       #   cloud.google.com/gke-nodepool: medium
       # tolerations:
       # - key: nodepool
       #   value: std4
       #   effect: NoSchedule
-      resources:
-        requests:
-          "cpu": "700m"
-          "memory": 1Gi
+      # resources:
+      #   requests:
+      #     "cpu": "700m"
+      #     "memory": 1Gi
+      # livenessProbe:
+      #   exec:
+      #     command:
+      #     - bash
+      #     - -c
+      #     - "set -x; if [[ $(mongosh admin --host=localhost  --username=$MONGO_INITDB_ROOT_USERNAME
+      #       --password=$MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase=admin
+      #       --quiet --eval \"db.adminCommand('ping').ok\" ) -eq \"1\" ]]; then \n
+      #       \         exit 0\n        fi\n        exit 1"
+      #   failureThreshold: 3
+      #   periodSeconds: 30
+      #   successThreshold: 1
+      #   timeoutSeconds: 20
+      # readinessProbe:
+      #   exec:
+      #     command:
+      #     - bash
+      #     - -c
+      #     - "set -x; if [[ $(mongosh admin --host=localhost  --username=$MONGO_INITDB_ROOT_USERNAME
+      #       --password=$MONGO_INITDB_ROOT_PASSWORD --authenticationDatabase=admin
+      #       --quiet --eval \"db.adminCommand('ping').ok\" ) -eq \"1\" ]]; then \n
+      #       \         exit 0\n        fi\n        exit 1"
+      #   failureThreshold: 3
+      #   periodSeconds: 30
+      #   successThreshold: 1
+      #   timeoutSeconds: 20
   # coordinator:
     # securityContext:
   #     allowPrivilegeEscalation: false
@@ -89,20 +115,20 @@ spec:
   #           "memory": 400Mi
   # configSecret:
   #   name: mg-configuration
-  sslMode: requireSSL
-  tls:
-    issuerRef:
-      apiGroup: "cert-manager.io"
-      kind: Issuer
-      name: mongo-ca-issuer
-  clusterAuthMode: x509
-  monitor:
-    # agent: prometheus.io/builtin
-    agent: prometheus.io/operator
-    prometheus:
-      serviceMonitor:
-        labels:
-          release: kube-prometheus-stack
+  # sslMode: requireSSL
+  # tls:
+  #   issuerRef:
+  #     apiGroup: "cert-manager.io"
+  #     kind: Issuer
+  #     name: mongo-ca-issuer
+  # clusterAuthMode: x509
+  # monitor:
+  #   # agent: prometheus.io/builtin
+  #   agent: prometheus.io/operator
+  #   prometheus:
+  #     serviceMonitor:
+  #       labels:
+  #         release: kube-prometheus-stack
   #     exporter:
   #       args: ["--compatible-mode"]
   #       securityContext:

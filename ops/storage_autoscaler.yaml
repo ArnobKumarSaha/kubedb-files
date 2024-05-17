@@ -9,5 +9,14 @@ spec:
   storage:
     standalone:
       trigger: "On"
+      expansionMode: "Online" / "Offline"
       usageThreshold: 60
+      scalingRules:
+      - appliesUpto: 500GB
+        threshold: 30pc
+      - appliesUpto: 1000GB
+        threshold: 20pc
+      - appliesUpto: ""
+        threshold: 50GB
       scalingThreshold: 50
+      upperBound: 2TB

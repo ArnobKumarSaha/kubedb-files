@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busy
+  name: busy
+  namespace: demo
+spec:
+  nodeName: lke180029-261013-3180cb8d0000
+  containers:
+  - image: busybox
+    name: busy
+    args: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    # - mountPath: /tmp
+    #   name: tmp
+    # - mountPath: /scripts
+    #   name: init-scripts
+    - mountPath: /var/lib/mysql
+      name: data
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: data-g4-2
+
+
+
+# ---
+# data(pvc)
+
+# tmp
+
+# init-scripts
+
+# init -> 1,2
+
+# /var/lib/mysql
+# /etc/mysql
+
+# SELECT MEMBER_HOST FROM performance_schema.replication_group_members;

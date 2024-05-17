@@ -1,0 +1,650 @@
+// rs0 [direct: primary] test> db.currentOp().inprog
+[
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn607584',
+    connectionId: 607584,
+    client: '127.0.0.1:47714',
+    appName: 'mongosh 2.1.5',
+    clientMetadata: {
+      application: { name: 'mongosh 2.1.5' },
+      driver: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+      platform: 'Node.js v20.11.1, LE',
+      os: {
+        name: 'linux',
+        architecture: 'x64',
+        version: '6.1.0-20-cloud-amd64',
+        type: 'Linux'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    threaded: true,
+    opid: 12219259,
+    secs_running: Long('1'),
+    microsecs_running: Long('1502993'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1715763925, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('TkvKXfI8gmtGw/YHwt0s6Ke3Jog=', 0),
+          keyId: Long('7366233499528855557')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:42.776Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn2352',
+    connectionId: 2352,
+    client: '10.2.6.130:49770',
+    clientMetadata: {
+      driver: {
+        name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+        version: '6.0.12'
+      },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219116,
+    secs_running: Long('3'),
+    microsecs_running: Long('3956404'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      internalClient: { minWireVersion: 17, maxWireVersion: 17 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:40.323Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'NoopWriter',
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    opid: 12219042,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn607586',
+    connectionId: 607586,
+    client: '127.0.0.1:47722',
+    appName: 'mongosh 2.1.5',
+    clientMetadata: {
+      application: { name: 'mongosh 2.1.5' },
+      driver: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+      platform: 'Node.js v20.11.1, LE',
+      os: {
+        name: 'linux',
+        architecture: 'x64',
+        version: '6.1.0-20-cloud-amd64',
+        type: 'Linux'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: 'root', db: 'admin' } ],
+    threaded: true,
+    opid: 12219317,
+    lsid: {
+      id: UUID('308b14bd-bedc-44dc-9045-f50f66d48bd3'),
+      uid: Binary.createFromBase64('Y5mrDaxi8gv8RmdTsQ+1j7fmkr7JUsabhNmXAheU0fg=', 0)
+    },
+    secs_running: Long('0'),
+    microsecs_running: Long('101'),
+    op: 'command',
+    ns: 'admin.$cmd.aggregate',
+    command: {
+      aggregate: 1,
+      pipeline: [
+        {
+          '$currentOp': {
+            allUsers: true,
+            idleConnections: false,
+            truncateOps: false
+          }
+        },
+        { '$match': {} }
+      ],
+      cursor: {},
+      lsid: { id: UUID('308b14bd-bedc-44dc-9045-f50f66d48bd3') },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1715763925, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('TkvKXfI8gmtGw/YHwt0s6Ke3Jog=', 0),
+          keyId: Long('7366233499528855557')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn606938',
+    connectionId: 606938,
+    client: '127.0.0.1:41516',
+    appName: 'mongosh 2.1.5',
+    clientMetadata: {
+      application: { name: 'mongosh 2.1.5' },
+      driver: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+      platform: 'Node.js v20.11.1, LE',
+      os: {
+        name: 'linux',
+        architecture: 'x64',
+        version: '6.1.0-20-cloud-amd64',
+        type: 'Linux'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    threaded: true,
+    opid: 12219054,
+    secs_running: Long('7'),
+    microsecs_running: Long('7916846'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1715763503, i: 120 }),
+        signature: {
+          hash: Binary.createFromBase64('f9odnKfyujQiNDVJlviUyxRENAw=', 0),
+          keyId: Long('7366233499528855557')
+        }
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:36.363Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn1948',
+    connectionId: 1948,
+    client: '10.2.6.130:57486',
+    appName: 'OplogFetcher',
+    clientMetadata: {
+      application: { name: 'OplogFetcher' },
+      driver: { name: 'MongoDB Internal Client', version: '6.0.12' },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219130,
+    secs_running: Long('3'),
+    microsecs_running: Long('3189357'),
+    op: 'getmore',
+    ns: 'local.oplog.rs',
+    command: {
+      getMore: Long('4194660130799390900'),
+      collection: 'oplog.rs',
+      batchSize: Long('13981010'),
+      maxTimeMS: Long('5000'),
+      term: Long('5'),
+      lastKnownCommittedOpTime: { ts: Timestamp({ t: 1715365206, i: 1 }), t: Long('5') },
+      '$db': 'local',
+      '$replData': 1,
+      '$oplogQueryData': 1,
+      '$readPreference': { mode: 'secondaryPreferred' },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1715365216, i: 1 }),
+        signature: {
+          hash: Binary.createFromBase64('MQ8934eZmnbdUg2y6tDkxJK98zY=', 0),
+          keyId: Long('7366233499528855557')
+        }
+      }
+    },
+    planSummary: 'COLLSCAN',
+    cursor: {
+      cursorId: Long('4194660130799390900'),
+      createdDate: ISODate('2024-05-10T18:20:17.326Z'),
+      lastAccessDate: ISODate('2024-05-15T09:05:40.990Z'),
+      nDocsReturned: Long('990973'),
+      nBatchesReturned: Long('228649'),
+      noCursorTimeout: false,
+      tailable: true,
+      awaitData: true,
+      originatingCommand: {
+        find: 'oplog.rs',
+        filter: { ts: { '$gte': Timestamp({ t: 1715365206, i: 1 }) } },
+        batchSize: Long('13981010'),
+        tailable: true,
+        awaitData: true,
+        term: Long('5'),
+        maxTimeMS: 60000,
+        readConcern: { level: 'local', afterClusterTime: Timestamp({ t: 0, i: 1 }) },
+        '$db': 'local',
+        '$replData': 1,
+        '$oplogQueryData': 1,
+        '$readPreference': { mode: 'secondaryPreferred' },
+        '$clusterTime': {
+          clusterTime: Timestamp({ t: 1715365216, i: 1 }),
+          signature: {
+            hash: Binary.createFromBase64('MQ8934eZmnbdUg2y6tDkxJK98zY=', 0),
+            keyId: Long('7366233499528855557')
+          }
+        }
+      },
+      operationUsingCursorId: Long('12219130'),
+      lastKnownCommittedOpTime: { ts: Timestamp({ t: 1715763935, i: 1 }), t: Long('5') }
+    },
+    numYields: 2,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {
+      FeatureCompatibilityVersion: { acquireCount: { r: Long('2') } },
+      Global: { acquireCount: { r: Long('2') } },
+      Mutex: { acquireCount: { r: Long('1') } }
+    },
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn1616',
+    connectionId: 1616,
+    client: '10.2.7.2:45278',
+    clientMetadata: {
+      driver: {
+        name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+        version: '6.0.12'
+      },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219299,
+    secs_running: Long('0'),
+    microsecs_running: Long('689058'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      internalClient: { minWireVersion: 17, maxWireVersion: 17 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:43.590Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'JournalFlusher',
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    opid: 12219316,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn3614',
+    connectionId: 3614,
+    client: '10.2.6.2:49772',
+    clientMetadata: {
+      driver: {
+        name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+        version: '6.0.12'
+      },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219313,
+    secs_running: Long('0'),
+    microsecs_running: Long('117042'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      internalClient: { minWireVersion: 17, maxWireVersion: 17 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:44.162Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn2353',
+    connectionId: 2353,
+    client: '10.2.6.130:49786',
+    clientMetadata: {
+      driver: {
+        name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+        version: '6.0.12'
+      },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219117,
+    secs_running: Long('3'),
+    microsecs_running: Long('3943905'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      internalClient: { minWireVersion: 17, maxWireVersion: 17 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:40.336Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn607034',
+    connectionId: 607034,
+    client: '127.0.0.1:48626',
+    appName: 'mongosh 2.1.5',
+    clientMetadata: {
+      application: { name: 'mongosh 2.1.5' },
+      driver: { name: 'nodejs|mongosh', version: '6.3.0|2.1.5' },
+      platform: 'Node.js v20.11.1, LE',
+      os: {
+        name: 'linux',
+        architecture: 'x64',
+        version: '6.1.0-20-cloud-amd64',
+        type: 'Linux'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: 'root', db: 'admin' } ],
+    threaded: true,
+    opid: 12211553,
+    lsid: {
+      id: UUID('b4be61ac-f7de-4001-b006-e9d386def977'),
+      uid: Binary.createFromBase64('Y5mrDaxi8gv8RmdTsQ+1j7fmkr7JUsabhNmXAheU0fg=', 0)
+    },
+    secs_running: Long('243'),
+    microsecs_running: Long('243285495'),
+    op: 'command',
+    ns: 'aa.one',
+    command: {
+      explain: { count: 'one', query: { key: 8 } },
+      verbosity: 'executionStats',
+      lsid: { id: UUID('b4be61ac-f7de-4001-b006-e9d386def977') },
+      '$clusterTime': {
+        clusterTime: Timestamp({ t: 1715763563, i: 120 }),
+        signature: {
+          hash: Binary.createFromBase64('tK06K4JMrBieRv4k2aYxdGNKXw4=', 0),
+          keyId: Long('7366233499528855557')
+        }
+      },
+      '$db': 'aa'
+    },
+    numYields: 348303,
+    locks: { FeatureCompatibilityVersion: 'r', Global: 'r' },
+    waitingForLock: false,
+    lockStats: {
+      FeatureCompatibilityVersion: { acquireCount: { r: Long('348304') } },
+      Global: { acquireCount: { r: Long('348304') } },
+      Mutex: { acquireCount: { r: Long('1') } }
+    },
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'conn1617',
+    connectionId: 1617,
+    client: '10.2.7.2:45290',
+    clientMetadata: {
+      driver: {
+        name: 'NetworkInterfaceTL-ReplicaSetMonitor-TaskExecutor',
+        version: '6.0.12'
+      },
+      os: {
+        type: 'Linux',
+        name: 'Ubuntu',
+        architecture: 'x86_64',
+        version: '22.04'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    threaded: true,
+    opid: 12219033,
+    secs_running: Long('8'),
+    microsecs_running: Long('8697492'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: Long('10000'),
+      topologyVersion: {
+        processId: ObjectId('663e63f20832d6b77159ea0d'),
+        counter: Long('6')
+      },
+      internalClient: { minWireVersion: 17, maxWireVersion: 17 },
+      maxTimeMSOpOnly: Long('20000'),
+      '$db': 'admin'
+    },
+    numYields: 0,
+    waitingForLatch: {
+      timestamp: ISODate('2024-05-15T09:05:35.582Z'),
+      captureName: 'AnonymousLockable'
+    },
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'OplogApplier-0',
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    effectiveUsers: [ { user: '__system', db: 'local' } ],
+    opid: 12219308,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'Checkpointer',
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    opid: 12217731,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'large-0:27017',
+    desc: 'OplogCapMaintainerThread-local.oplog.rs',
+    active: true,
+    currentOpTime: '2024-05-15T09:05:44.179+00:00',
+    opid: 5328021,
+    op: 'none',
+    ns: '',
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {
+      FeatureCompatibilityVersion: { acquireCount: { w: Long('1') } },
+      ReplicationStateTransition: { acquireCount: { w: Long('1') } },
+      Global: { acquireCount: { w: Long('1') } }
+    },
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  }
+]

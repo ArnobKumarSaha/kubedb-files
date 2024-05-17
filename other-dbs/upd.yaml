@@ -1,0 +1,67 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MySQLOpsRequest
+metadata:
+  name: update-5
+  namespace: demo
+spec:
+  apply: Always
+  databaseRef:
+    name: g5
+  type: UpdateVersion
+  updateVersion:
+    targetVersion: 8.0.36
+
+# I0516 08:51:14.397293       1 statefulset.go:81] Patching StatefulSet demo/g1 with 
+# {
+#   "spec": {
+#     "template": {
+#       "spec": {
+#         "$setElementOrder/containers": [
+#           {
+#             "name": "mysql"
+#           },
+#           {
+#             "name": "mysql-coordinator"
+#           }
+#         ],
+#         "$setElementOrder/initContainers": [
+#           {
+#             "name": "mysql-init"
+#           }
+#         ],
+#         "containers": [
+#           {
+#             "image": "ghcr.io/appscode-images/mysql:8.0.36-debian@sha256:d5aa6bbeff6005a1a6926dad439377b808bb67c218fb9c74f913280a5112adc5",
+#             "name": "mysql"
+#           },
+#           {
+#             "image": "ghcr.io/kubedb/mysql-coordinator:v0.22.0@sha256:cddbb82a4446855e233248be0c15e5b99a10a03ee99e0844f6aac548b6d56063",
+#             "name": "mysql-coordinator"
+#           }
+#         ],
+#         "initContainers": [
+#           {
+#             "image": "ghcr.io/kubedb/mysql-init:8.0.31-v3@sha256:b3af9d131ab359f199d6dca998b3dba915517c7844da7cf709fa02d62ae63ee9",
+#             "name": "mysql-init",
+#             "resources": {
+#               "limits": {
+#                 "cpu": "200m",
+#                 "memory": "128Mi"
+#               },
+#               "requests": {
+#                 "cpu": "200m",
+#                 "memory": "128Mi"
+#               }
+#             }
+#           }
+#         ]
+#       }
+#     }
+#   }
+# }
+
+# 8.0.27 deployed
+# securityContext in place (user:999, runAsNonRoot = true etc)
+# Primary is up
+# Secondary is getting permission issue.
+# Image updated to 8.0.36  for secondary and getting the same error log.(mbind: operation not permitted)

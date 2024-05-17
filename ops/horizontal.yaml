@@ -50,6 +50,11 @@ spec:
   databaseRef:
     name: shard
   horizontalScaling:
+    shard:
+      shards: 5
+      replicas: 4 
     configServer:
       replicas: 3
   apply: IfReady
+
+db.runCommand({explain: { count: "one", query: {key:8}}, verbosity: "executionStats"})

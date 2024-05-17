@@ -1,0 +1,22 @@
+apiVersion: ops.kubedb.com/v1alpha1
+kind: MongoDBOpsRequest
+metadata:
+  name: up-mem
+  namespace: demo
+spec:
+  type: VerticalScaling
+  databaseRef:
+    name: large
+  verticalScaling:
+    replicaSet:
+      resources:
+        limits:
+          memory: "30.6Gi"
+        requests:
+          cpu: "7"
+          memory: 30Gi
+  readinessCriteria:
+    oplogMaxLagSeconds: 20
+    objectsCountDiffPercentage: 20
+  timeout: 15m
+  apply: IfReady

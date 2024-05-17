@@ -1,15 +1,40 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MySQL
 metadata:
-  name: mysql
-  namespace: db
+  name: group
+  namespace: demo
 spec:
   storage:
     accessModes:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 1Gi
+        storage: 2Gi
   storageType: Durable
   terminationPolicy: Delete
-  version: 8.0.35
+  version: 8.0.27
+  replicas: 3
+  topology:
+    mode: GroupReplication
+
+# ghcr.io/kubedb/mysql-init:8.0.26-v3
+# ghcr.io/kubedb/mysql-init:8.0.31-v3
+
+
+# helm install kubedb appscode/kubedb \
+#   --version v2023.08.18 \
+#   --namespace kubedb --create-namespace \
+#   --set kubedb-provisioner.enabled=true \
+#   --set kubedb-ops-manager.enabled=true \
+#   --set kubedb-autoscaler.enabled=true \
+#   --set kubedb-dashboard.enabled=true \
+#   --set kubedb-schema-manager.enabled=true \
+#   --set-file global.license=urse.txt
+
+# kubectl apply -f https://github.com/kubedb/installer/raw/v2024.3.16/crds/kubedb-catalog-crds.yaml
+
+# helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
+#   --version v2024.3.16 \
+#   --namespace kubedb --create-namespace \
+#   --set kubedb-catalog.skipDeprecated=false \
+#   --set-file global.license=/path/to/the/license.txt

@@ -45,7 +45,7 @@ kubectl apply -f ~/yamls/ops/version-update.yaml
 
 
 helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
-    --version v2024.3.16 \
+    --version v2024.4.27 \
     --namespace kubedb --create-namespace \
     --set-file global.license=/home/arnob/yamls/license/kind.txt \
     --set kubedb-provisioner.operator.securityContext.seccompProfile.type=RuntimeDefault \
@@ -54,11 +54,12 @@ helm upgrade -i kubedb oci://ghcr.io/appscode-charts/kubedb \
     --set kubedb-autoscaler.operator.securityContext.seccompProfile.type=RuntimeDefault \
     --set global.featureGates.RabbitMQ=true \
     --set global.featureGates.ZooKeeper=true \
-    --set global.featureGates.Solr=true \ 
+    --set global.featureGates.Solr=true \
     --set global.featureGates.Singlestore=true \
     --set global.featureGates.Druid=true \
     --set global.featureGates.Pgpool=true \
-    --set global.featureGates.FerretDB=true
+    --set global.featureGates.FerretDB=true \
+    --set global.featureGates.MSSQLServer=true
 
 v2024.2.14
 
@@ -139,3 +140,9 @@ sidekicks.apps.k8s.appscode.com                   2024-02-22T04:23:14Z
 nodetopologies.node.k8s.appscode.com              2024-02-22T04:23:15Z
 recommendations.supervisor.appscode.com           2024-02-22T04:23:15Z
 appbindings.appcatalog.appscode.com               2024-02-22T04:25:16Z
+
+
+
+List VPAs
+vpa --ownerRef--> autoscaler --> db
+initialize the maps (vpa to scaler, scaler to db, vpa & its selector)
