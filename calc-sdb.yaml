@@ -1,0 +1,115 @@
+apiVersion: meta.k8s.appscode.com/v1alpha1
+kind: ResourceCalculator
+request:
+  resource:   
+    apiVersion: kubedb.com/v1alpha2
+    kind: Singlestore
+    metadata:
+      annotations:
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"kubedb.com/v1alpha2","kind":"Singlestore","metadata":{"annotations":{},"name":"singlestore-sample","namespace":"demo"},"spec":{"configSecret":{"name":"sdb-configuration"},"licenseSecret":{"name":"license-secret"},"storage":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"10Gi"}}},"storageType":"Durable","terminationPolicy":"WipeOut","version":"8.5.7"}}
+      creationTimestamp: "2024-05-28T09:38:40Z"
+      finalizers:
+      - kubedb.com
+      generation: 2
+      name: singlestore-sample
+      namespace: demo
+      resourceVersion: "444558"
+      uid: 05e385e8-4dfb-4a10-84fb-1adf8e8a6be1
+    spec:
+      authSecret:
+        name: singlestore-sample-root-cred
+      configSecret:
+        name: sdb-configuration
+      healthChecker:
+        failureThreshold: 1
+        periodSeconds: 10
+        timeoutSeconds: 10
+      licenseSecret:
+        name: license-secret
+      podPlacementPolicy:
+        name: default
+      podTemplate:
+        controller: {}
+        metadata: {}
+        spec:
+          containers:
+          - name: singlestore
+            resources:
+              limits:
+                memory: 2Gi
+              requests:
+                cpu: 500m
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              runAsGroup: 998
+              runAsNonRoot: true
+              runAsUser: 999
+              seccompProfile:
+                type: RuntimeDefault
+          initContainers:
+          - name: singlestore-init
+            resources:
+              limits:
+                memory: 512Mi
+              requests:
+                cpu: 200m
+                memory: 512Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                - ALL
+              runAsGroup: 998
+              runAsNonRoot: true
+              runAsUser: 999
+              seccompProfile:
+                type: RuntimeDefault
+          securityContext:
+            fsGroup: 999
+      storage:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+      storageType: Durable
+      terminationPolicy: WipeOut
+      version: 8.5.7
+    status:
+      conditions:
+      - lastTransitionTime: "2024-05-28T09:38:40Z"
+        message: 'The KubeDB operator has started the provisioning of Singlestore: demo/singlestore-sample'
+        observedGeneration: 1
+        reason: DatabaseProvisioningStartedSuccessfully
+        status: "True"
+        type: ProvisioningStarted
+      - lastTransitionTime: "2024-05-28T09:39:28Z"
+        message: All replicas are ready for Singlestore demo/singlestore-sample
+        observedGeneration: 2
+        reason: AllReplicasReady
+        status: "True"
+        type: ReplicaReady
+      - lastTransitionTime: "2024-05-28T09:39:41Z"
+        message: database demo/singlestore-sample is accepting connection
+        observedGeneration: 2
+        reason: AcceptingConnection
+        status: "True"
+        type: AcceptingConnection
+      - lastTransitionTime: "2024-05-28T09:39:41Z"
+        message: database demo/singlestore-sample is ready
+        observedGeneration: 2
+        reason: AllReplicasReady
+        status: "True"
+        type: Ready
+      - lastTransitionTime: "2024-05-28T09:39:41Z"
+        message: 'The Singlestore: demo/singlestore-sample is successfully provisioned.'
+        observedGeneration: 2
+        reason: DatabaseSuccessfullyProvisioned
+        status: "True"
+        type: Provisioned
+      phase: Ready

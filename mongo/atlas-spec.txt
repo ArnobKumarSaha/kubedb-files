@@ -1,0 +1,116 @@
+Atlas [mongos] config> db.adminCommand({ getCmdLineOpts: 1 })
+{
+  argv: [
+    '/var/lib/mongodb-mms-automation/mongodb-linux-aarch64-6.0.15-ent/bin/mongos',
+    '-f',
+    '/var/lib/mongodb-mms-automation/workspace/mongos-atlas-12f2kh-mongos-1.conf'
+  ],
+  parsed: {
+    config: '/var/lib/mongodb-mms-automation/workspace/mongos-atlas-12f2kh-mongos-1.conf',
+    net: {
+      bindIp: '0.0.0.0',
+      compression: { compressors: 'snappy,zstd,zlib' },
+      maxIncomingConnections: 3000,
+      maxIncomingConnectionsOverride: [ '127.0.0.1/32', '192.168.248.0/21' ],
+      port: 27016,
+      tls: {
+        CAFile: '/etc/pki/tls/certs/atlas-bundle.crt',
+        allowConnectionsWithoutCertificates: true,
+        certificateKeyFile: '/etc/pki/tls/private/mongod.pem',
+        clusterCAFile: '/var/lib/mongodb-mms-automation/atlas-cluster-managed.crt',
+        disabledProtocols: 'TLS1_0,TLS1_1',
+        mode: 'requireTLS'
+      }
+    },
+    processManagement: { fork: true },
+    security: { keyFile: '/var/lib/mongodb-mms-automation/keyfile' },
+    setParameter: {
+      ShardingTaskExecutorPoolMaxSize: '250',
+      ShardingTaskExecutorPoolMaxSizeForConfigServers: '2147483647',
+      allowRolesFromX509Certificates: 'true',
+      authenticationMechanisms: 'SCRAM-SHA-1,SCRAM-SHA-256,MONGODB-AWS,MONGODB-X509',
+      awsSTSUrl: 'https://sts.ap-south-2.amazonaws.com',
+      diagnosticDataCollectionDirectoryPath: '/srv/mongodb/atlas-12f2kh-mongos-1/diagnostic.data',
+      honorSystemUmask: 'false',
+      internalQueryGlobalProfilingFilter: 'true',
+      loadBalancerPort: '27019',
+      mongotHost: 'localhost:28000',
+      searchIndexManagementHostAndPort: '/etc/mongodb-mms-automation/envoy/sockets/search-mms.sock',
+      suppressNoTLSPeerCertificateWarning: 'true',
+      tlsCATrusts: '[{sha256: "5C7377CA7294365CBEBCAB624BF56965E13C8A2143DD7507F53E123A3FDFCE12", roles: [{ role: "", db: ""}]}]',
+      tlsWithholdClientCertificate: 'true'
+    },
+    sharding: {
+      configDB: 'atlas-12f2kh-config-0/atlas-12f2kh-config-00-00.38r1r.mongodb.net:27017,atlas-12f2kh-config-00-01.38r1r.mongodb.net:27017,atlas-12f2kh-config-00-02.38r1r.mongodb.net:27017'
+    },
+    systemLog: {
+      destination: 'file',
+      logAppend: true,
+      path: '/srv/mongodb/atlas-12f2kh-mongos-1/mongodb.log'
+    }
+  },
+  ok: 1,
+  '$clusterTime': {
+    clusterTime: Timestamp({ t: 1718189893, i: 1 }),
+    signature: {
+      hash: Binary.createFromBase64('qibVXlxk9dguJN/PyyxVxEfXig0=', 0),
+      keyId: Long('7379565687900995609')
+    }
+  },
+  operationTime: Timestamp({ t: 1718189893, i: 1 })
+}
+
+
+
+
+
+
+
+
+
+Atlas [mongos] config> sh.status()
+shardingVersion
+{ _id: 1, clusterId: ObjectId('66697be55bc17dd8d0ed89a7') }
+---
+shards
+[
+  {
+    _id: 'atlas-12f2kh-shard-0',
+    host: 'atlas-12f2kh-shard-0/atlas-12f2kh-shard-00-00.38r1r.mongodb.net:27017,atlas-12f2kh-shard-00-01.38r1r.mongodb.net:27017,atlas-12f2kh-shard-00-02.38r1r.mongodb.net:27017',
+    state: 1,
+    topologyTime: Timestamp({ t: 1718189040, i: 4 })
+  }
+]
+---
+active mongoses
+[ { '6.0.15': 3 } ]
+---
+autosplit
+{ 'Currently enabled': 'yes' }
+---
+balancer
+{
+  'Currently enabled': 'yes',
+  'Currently running': 'no',
+  'Failed balancer rounds in last 5 attempts': 0,
+  'Migration Results for the last 24 hours': 'No recent migrations'
+}
+---
+databases
+[
+  {
+    database: { _id: 'config', primary: 'config', partitioned: true },
+    collections: {
+      'config.system.sessions': {
+        shardKey: { _id: 1 },
+        unique: false,
+        balancing: true,
+        chunkMetadata: [ { shard: 'atlas-12f2kh-shard-0', nChunks: 1024 } ],
+        chunks: [
+          'too many chunks to print, use verbose if you want to force print'
+        ],
+        tags: []
+      }
+    }
+  }
+]

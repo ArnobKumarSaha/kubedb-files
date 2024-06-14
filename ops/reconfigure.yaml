@@ -11,7 +11,7 @@ metadata:
 spec:
   type: Reconfigure
   databaseRef:
-    name: repl6
+    name: repl4
   # configuration:
   #   replicaSet:
   #     configSecret:
@@ -26,29 +26,73 @@ spec:
   apply: IfReady
 # status:
 #   conditions:
-#   - lastTransitionTime: "2023-08-02T04:31:23Z"
+#   - lastTransitionTime: "2024-06-03T09:52:02Z"
 #     message: MongoDB ops request is reconfiguring database
 #     observedGeneration: 1
 #     reason: Reconfigure
 #     status: "True"
 #     type: Reconfigure
-#   - lastTransitionTime: "2023-08-02T04:32:24Z"
+#   - lastTransitionTime: "2024-06-03T09:52:10Z"
+#     message: check is master; ConditionStatus:True; PodName:repl4-1
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckIsMaster--repl4-1
+#   - lastTransitionTime: "2024-06-03T09:52:10Z"
+#     message: evict pod; ConditionStatus:True; PodName:repl4-1
+#     observedGeneration: 1
+#     status: "True"
+#     type: EvictPod--repl4-1
+#   - lastTransitionTime: "2024-06-03T09:52:30Z"
+#     message: check pod ready; ConditionStatus:True; PodName:repl4-1
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckPodReady--repl4-1
+#   - lastTransitionTime: "2024-06-03T09:52:30Z"
+#     message: check is master; ConditionStatus:True; PodName:repl4-2
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckIsMaster--repl4-2
+#   - lastTransitionTime: "2024-06-03T09:52:30Z"
+#     message: evict pod; ConditionStatus:True; PodName:repl4-2
+#     observedGeneration: 1
+#     status: "True"
+#     type: EvictPod--repl4-2
+#   - lastTransitionTime: "2024-06-03T09:52:50Z"
+#     message: check pod ready; ConditionStatus:True; PodName:repl4-2
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckPodReady--repl4-2
+#   - lastTransitionTime: "2024-06-03T09:52:50Z"
+#     message: check is master; ConditionStatus:True; PodName:repl4-0
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckIsMaster--repl4-0
+#   - lastTransitionTime: "2024-06-03T09:52:50Z"
+#     message: step down; ConditionStatus:True; PodName:repl4-0
+#     observedGeneration: 1
+#     status: "True"
+#     type: StepDown--repl4-0
+#   - lastTransitionTime: "2024-06-03T09:52:50Z"
+#     message: evict pod; ConditionStatus:True; PodName:repl4-0
+#     observedGeneration: 1
+#     status: "True"
+#     type: EvictPod--repl4-0
+#   - lastTransitionTime: "2024-06-03T09:53:10Z"
+#     message: check pod ready; ConditionStatus:True; PodName:repl4-0
+#     observedGeneration: 1
+#     status: "True"
+#     type: CheckPodReady--repl4-0
+#   - lastTransitionTime: "2024-06-03T09:53:10Z"
 #     message: Successfully Reconfigured MongoDB
 #     observedGeneration: 1
 #     reason: ReconfigureReplicaset
 #     status: "True"
 #     type: ReconfigureReplicaset
-#   - lastTransitionTime: "2023-08-02T04:33:00Z"
-#     message: Successfully Reconfigured MongoDB
-#     observedGeneration: 1
-#     reason: ReconfigureArbiter
-#     status: "True"
-#     type: ReconfigureArbiter
-#   - lastTransitionTime: "2023-08-02T04:33:01Z"
+#   - lastTransitionTime: "2024-06-03T09:53:10Z"
 #     observedGeneration: 1
 #     status: "True"
 #     type: ""
-#   - lastTransitionTime: "2023-08-02T04:33:03Z"
+#   - lastTransitionTime: "2024-06-03T09:53:10Z"
 #     message: Successfully completed the modification process.
 #     observedGeneration: 1
 #     reason: Successful
@@ -57,8 +101,3 @@ spec:
 #   observedGeneration: 1
 #   phase: Successful
 
-
-4.4.26 -> 4.4.29 (feb28)
-5.0.23 -> 5.0.26 (mar26)
-6.0.12 -> 6.0.15 (apr18)
-7.0.5  -> 7.0.8  (apr3)

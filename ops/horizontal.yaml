@@ -1,44 +1,3 @@
-# apiVersion: ops.kubedb.com/v1alpha1
-# kind: MongoDBOpsRequest
-# metadata:
-#   name: hscale
-#   namespace: demo
-# spec:
-#   type: HorizontalScaling
-#   databaseRef:
-#     name: mg
-#   horizontalScaling:
-#     replicas: 3
-#     hidden:
-#       replicas: 2
-# status:
-#   conditions:
-#   - lastTransitionTime: "2023-08-02T05:40:33Z"
-#     message: MongoDB ops request is horizontally scaling database
-#     observedGeneration: 1
-#     reason: HorizontalScale
-#     status: "True"
-#     type: HorizontalScale
-#   - lastTransitionTime: "2023-08-02T05:41:08Z"
-#     message: Successfully Horizontally Scaled Up Hidden Replicas
-#     observedGeneration: 1
-#     reason: HorizontalScaleHiddenUp
-#     status: "True"
-#     type: HorizontalScaleHiddenUp
-#   - lastTransitionTime: "2023-08-02T05:41:53Z"
-#     message: Successfully Horizontally Scaled Up ReplicaSet
-#     observedGeneration: 1
-#     reason: HorizontalScaleReplicaSetUp
-#     status: "True"
-#     type: HorizontalScaleReplicaSetUp
-#   - lastTransitionTime: "2023-08-02T05:41:54Z"
-#     message: Successfully Horizontally Scaled MongoDB
-#     observedGeneration: 1
-#     reason: Successful
-#     status: "True"
-#     type: Successful
-#   observedGeneration: 1
-#   phase: Successful
 
 apiVersion: ops.kubedb.com/v1alpha1
 kind: MongoDBOpsRequest
@@ -48,13 +7,51 @@ metadata:
 spec:
   type: HorizontalScaling
   databaseRef:
-    name: shard
+    name: repl4
   horizontalScaling:
-    shard:
-      shards: 5
-      replicas: 4 
-    configServer:
-      replicas: 3
+    replicas: 2
+    # shard:
+    #   shards: 5
+    #   replicas: 4 
+    # configServer:
+    #   replicas: 3
   apply: IfReady
+# status:
+#   conditions:
+#   - lastTransitionTime: "2024-06-03T09:18:35Z"
+#     message: MongoDB ops request is horizontally scaling database
+#     observedGeneration: 1
+#     reason: HorizontalScale
+#     status: "True"
+#     type: HorizontalScale
+#   - lastTransitionTime: "2024-06-03T09:19:04Z"
+#     message: Successfully Horizontally Scaled Up ReplicaSet
+#     observedGeneration: 1
+#     reason: HorizontalScaleReplicaSetUp
+#     status: "True"
+#     type: HorizontalScaleReplicaSetUp
+#   - lastTransitionTime: "2024-06-03T09:18:44Z"
+#     message: get replica; ConditionStatus:True
+#     observedGeneration: 1
+#     status: "True"
+#     type: GetReplica
+#   - lastTransitionTime: "2024-06-03T09:19:04Z"
+#     message: match replica; ConditionStatus:True
+#     observedGeneration: 1
+#     status: "True"
+#     type: MatchReplica
+#   - lastTransitionTime: "2024-06-03T09:19:04Z"
+#     message: Successfully Horizontally Scaled MongoDB
+#     observedGeneration: 1
+#     reason: Successful
+#     status: "True"
+#     type: Successful
+#   observedGeneration: 1
+#   phase: Successful
 
-db.runCommand({explain: { count: "one", query: {key:8}}, verbosity: "executionStats"})
+
+it was: {triggerId: <id>} to the deployment_sessions table
+But we added an index so you cannot reproduce this
+Naor Sanilevici
+5:20 PM
+{serviceName:"mgmt-652ec5d5ebabef24be6d1c4a-1"}

@@ -1,0 +1,24 @@
+# # On all pods
+# app.kubernetes.io/component=database,
+# app.kubernetes.io/instance=cluster,
+# app.kubernetes.io/managed-by=kubedb.com,
+# app.kubernetes.io/name=mongodbs.kubedb.com,
+
+# # configServer
+# archiver=true,
+# kubedb.com/role=primary,
+# mongodb.kubedb.com/node.config=cluster-configsvr,
+
+# # shard
+# archiver=true,
+# kubedb.com/role=primary,
+# mongodb.kubedb.com/node.shard=cluster-shard1,
+
+# # mongos
+# archiver=true,
+# mongodb.kubedb.com/node.mongos=cluster-mongos,
+
+# # sts-specific
+# apps.kubernetes.io/pod-index=2,
+# controller-revision-hash=cluster-mongos-869f458c64,
+# statefulset.kubernetes.io/pod-name=cluster-mongos-0

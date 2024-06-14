@@ -1,0 +1,70 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app.kubernetes.io/instance: source
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: rabbitmqs.kubedb.com
+    release: kube-prometheus-stack
+  name: source
+  namespace: default
+spec:
+  groups:
+  - name: rabbitmq.database.default.source.rules
+    rules:
+    - alert: RabbitMQDown
+      annotations:
+        description: |-
+          Database in NotReady state, database read/write is failing.
+            VALUE = {{ $value }}
+            LABELS = {{ $labels }}
+        summary: RabbitMQ database is in NotReady state (instance {{ $labels.instance
+          }})
+      expr: kubedb_com_rabbitmq_status_phase{app="source", namespace="default",phase="NotReady"}
+        >= 1
+      for: 30s
+      labels:
+        app: source
+        app_namespace: default
+        k8s_group: kubedb.com
+        k8s_kind: RabbitMQ
+        k8s_resource: rabbitmqs
+        severity: critical
+    - alert: DiskAlmostFull
+      annotations:
+        description: |-
+          Persistent Volume Usages
+            VALUE = {{ $value }}
+            LABELS = {{ $labels }}
+        summary: Persistent Volume Usages in instance {{ $labels.instance }}
+      expr: (kubelet_volume_stats_used_bytes / on(persistentvolumeclaim) group_left(pod)
+        (kubelet_volume_stats_capacity_bytes + on(persistentvolumeclaim) group_left(pod)
+        kube_pod_spec_volumes_persistentvolumeclaims_info{pod=~\"source-.+$\",namespace=~"default"})
+        ) * 100 > 95
+      for: 1m
+      labels:
+        app: source
+        app_namespace: default
+        k8s_group: kubedb.com
+        k8s_kind: RabbitMQ
+        k8s_resource: rabbitmqs
+        severity: critical
+  - name: rabbitmq.provisioner.default.source.rules
+    rules:
+    - alert: KubeDBRabbitMQPhaseNotReady
+      annotations:
+        description: |-
+          KubeDB RabbitMQ Phase not ready on {{ $labels.rabbitmq }}
+            VALUE = {{ $value }}
+            LABELS = {{ $labels }}
+        summary: KubeDB RabbitMQ Phase NotReady (rabbitmq {{ $labels.rabbitmq }})
+      expr: kubedb_com_rabbitmq_status_phase{phase="NotReady",app="source",namespace="default"}
+        == 1
+      for: 1m
+      labels:
+        app: source
+        app_namespace: default
+        k8s_group: kubedb.com
+        k8s_kind: RabbitMQ
+        k8s_resource: rabbitmqs
+        severity: critical

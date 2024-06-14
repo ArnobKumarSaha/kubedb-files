@@ -18,8 +18,8 @@ spec:
         image: arnobkumarsaha/perm
         args: ["/bin/sh", "-c", "sleep 30000"]
         volumeMounts:
-        - name: data
-          mountPath: /data
+        # - name: data
+        #   mountPath: /data
         - name: hello
           mountPath: /hello
         # - name: empty
@@ -42,10 +42,10 @@ spec:
       #   value: medium
       # nodeSelector:
       #   cloud.google.com/gke-nodepool: medium
-      volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: test-pvc
+      # volumes:
+      # - name: data
+      #   persistentVolumeClaim:
+      #     claimName: test-pvc
       # - name: hello
       #   nfs:
       #     path: /exports
@@ -63,7 +63,7 @@ spec:
       name: hello
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: linode-block-storage-retain
+      storageClassName: longhorn
       resources:
         requests:
           storage: 1Gi

@@ -4,7 +4,7 @@ metadata:
   name: gke-pools
 spec:
   nodeSelectionPolicy: Taint
-  topologyKey: "nodepool"
+  topologyKey: "nodepool".
   nodeGroups:
   # - topologyValue: small
   #   allocatable:

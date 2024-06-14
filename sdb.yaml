@@ -1,0 +1,52 @@
+apiVersion: kubedb.com/v1alpha2
+kind: Singlestore
+metadata:
+  name: hi
+  namespace: demo
+  labels:
+    app.kubernetes.io/name: singlestores.kubedb.com
+    app.kubernetes.io/instance: hi
+    app.kubernetes.io/managed-by: Helm
+spec:
+  version: "8.1.32"
+  topology:
+    aggregator:
+      replicas: 2
+      storage:
+        storageClassName: linode-block-storage
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+      podTemplate:
+        spec:
+          containers:
+            - name: singlestore
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 2Gi
+    leaf:
+      replicas: 3
+      storage:
+        storageClassName: linode-block-storage
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+      podTemplate:
+        spec:
+          containers:
+            - name: singlestore
+              resources:
+                limits:
+                  cpu: 500m
+                  memory: 2Gi
+  storageType: Durable
+  terminationPolicy: WipeOut
+
+template: kubedbcom-singlestore-editor/templates/monitoring/alert.yaml:10:8: executing "kubedbcom-singlestore-editor/templates/monitoring/alert.yaml" 
+at <include "kubedbcom-singlestore-editor.labels" .>: error calling include: template: kubedbcom-singlestore-editor/templates/_helpers.tpl:29:27: 
+executing "kubedbcom-singlestore-editor.labels" at <.Values.spec.labels>: nil pointer evaluating interface {}.labels

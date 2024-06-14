@@ -52,3 +52,36 @@ spec:
   #         release: prometheus
   #     exporter:
   #       args: ["--compatible-mode"]
+
+
+
+
+
+nodeSelector:
+  app: kubedb
+  instance: mongodb
+  component: mg-database
+  nodepool_type: tiny
+tolerations:
+  - effect: NoSchedule
+    key: app
+    operator: Equal
+    value: kubedb
+  - effect: NoSchedule
+    key: instance
+    operator: Equal
+    value: mongodb
+  - effect: NoSchedule
+    key: component
+    operator: Equal
+    value: mg-database
+  - effect: NoSchedule
+    key: nodepool_type
+    operator: Equal
+    value: tiny
+
+
+app.kubernetes.io/component=database,
+app.kubernetes.io/instance=large,
+app.kubernetes.io/managed-by=kubedb.com,
+app.kubernetes.io/name=mongodbs.kubedb.com

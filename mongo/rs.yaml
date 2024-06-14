@@ -1,7 +1,7 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MongoDB
 metadata:
-  name: repl6
+  name: repl4
   namespace: demo
 spec:
   # allowedSchemas:
@@ -14,7 +14,7 @@ spec:
   #     matchLabels:
   #       "schema.kubedb.com": "mongo"
   # version: "4.0.11-v1"
-  version: "6.0.12"
+  version: "4.4.26"
   terminationPolicy: WipeOut
   replicas: 2
   replicaSet:
@@ -157,3 +157,6 @@ spec:
 # state=eyJyZWRpcmVjdFVSTCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDA4NDUvY2FsbGJhY2siLCJzaWQiOiI0Y2dwY3kiLCJjaWQiOiJPWG15U2wifQ%3D%3D
 
 # Collection has found to be unsharded after refresh
+
+
+# {"licenseID":"7360384395990667768","natsSubject":"events.s96.user.42.k8s.cc3c0e3c-412a-4e7b-b3a6-293184c30e08.product.scanner","natsServer":"ws://nats.appscode.ninja","natsWSServers":["ws://nats.appscode.ninja","nats://nats.appscode.ninja:4222"],"credential":"LS0tLS1CRUdJTiBOQVRTIFVTRVIgSldULS0tLS0KZXlKMGVYQWlPaUpLVjFRaUxDSmhiR2NpT2lKbFpESTFOVEU1TFc1clpYa2lmUS5leUpxZEdraU9pSllSbEpGVGxOR1IxWlZOelkxVjAxVFVsQlRSVXBCV1ZBM1JGQlJVbGRXVVZsUVJWSlZSRTAwVDBNM1ZrTkRWVlEzVFZCUklpd2lhV0YwSWpveE56RTJNelUxT0RjeExDSnBjM01pT2lKQlFUUktNbEJOV1RkRFQwbEpSME5hVXpWV1ExRk9UVWxEV0RaS00wWlZXbE5WVFZsQ1JUWTBXalZQVERReVdrWldTbEZRTTFoTU15SXNJbTVoYldVaU9pSmxkbVZ1ZEhNdWN6azJMblZ6WlhJdU5ESXVhemh6TG1Oak0yTXdaVE5qTFRReE1tRXROR1UzWWkxaU0yRTJMVEk1TXpFNE5HTXpNR1V3T0M1d2NtOWtkV04wTG5OallXNXVaWElpTENKemRXSWlPaUpWUkRVelIwRkZVMFEyTjBOUFdGSkRVMWhSUVVKU1ZFdFVVRkZIVEU1QlIweE5VRXBCUmpKS1dGRkpXalJKVERWRlRFNU9WMGxVU1NJc0ltNWhkSE1pT25zaWNIVmlJanA3ZlN3aWMzVmlJanA3ZlN3aWMzVmljeUk2TFRFc0ltUmhkR0VpT2kweExDSndZWGxzYjJGa0lqb3RNU3dpZEhsd1pTSTZJblZ6WlhJaUxDSjJaWEp6YVc5dUlqb3lmWDAuN1dSZm5zNGhxOHEtWm5DU2M4eFdzVUNaVTZPNmVoWFdRUVhfdEFyTTR6bXN4eEpmTXdkb2NxQWhBQWEtV0ZWT3NPZVNqcTZjYWlmUXZwR1AwdTN0Q2cKLS0tLS0tRU5EIE5BVFMgVVNFUiBKV1QtLS0tLS0KCioqKioqKioqKioqKioqKioqKioqKioqKiogSU1QT1JUQU5UICoqKioqKioqKioqKioqKioqKioqKioqKioKTktFWSBTZWVkIHByaW50ZWQgYmVsb3cgY2FuIGJlIHVzZWQgdG8gc2lnbiBhbmQgcHJvdmUgaWRlbnRpdHkuCk5LRVlzIGFyZSBzZW5zaXRpdmUgYW5kIHNob3VsZCBiZSB0cmVhdGVkIGFzIHNlY3JldHMuCgotLS0tLUJFR0lOIFVTRVIgTktFWSBTRUVELS0tLS0KU1VBS1lMNEVXV1ZaQ1lES0I3QjNPUUdEUUJCQVVGTFI2VE1CTjRLVTVFMk1WVzZIM0hIWDNaQjZLTQotLS0tLS1FTkQgVVNFUiBOS0VZIFNFRUQtLS0tLS0KCioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioK"}
